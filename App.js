@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+// import SplashScreen from './SplashScreen';
+// import Onboarding from './Onboarding'
+// import SignUpPage from './SignUpPage'
+import VarificationPage from './VarificationPage'
+// import LoginPage from './LoginPage'
+// import ForgetPassword from './ForgetPassword'
+// import ResetPass from './ResetPass'
+// import Success from './Success'
+// import  Setup from './Setup'
+// import AddNewAccount from './AddNewAccount'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>palak</Text>
-      <StatusBar style="auto" />
+    <View>
+      {/* < SplashScreen /> */}
+      {/* < Onboarding/> */}
+      {/* < SignUpPage/> */}
+      < VarificationPage/>
+      {/* < LoginPage/> */}
+      {/* < ForgetPassword/> */}
+      {/* < ResetPass/> */}
+      {/* < Success/> */}
+      {/* < Setup /> */}
+      {/* < AddNewAccount /> */}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
