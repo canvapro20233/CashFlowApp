@@ -1,13 +1,16 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 import showImg from "./assets/show.png"
+import icon from "./assets/arrow.png"
 
 const ResetPass = () => {
  
   return (
     <View style={styles.container}>
-    {/* <Image style={styles.photo} source={productImg}/> */}
       <Text style={styles.text}>Reset Password</Text>
+      <TouchableOpacity>
+       <Image style={styles.photo} source={icon}/>
+      </TouchableOpacity>
 
       <View style={styles.passwordContainer}>
       <TextInput style={styles.passwordInput}
@@ -39,6 +42,10 @@ const ResetPass = () => {
 export default ResetPass;
 
 const styles = StyleSheet.create({
+  photo:{
+    marginLeft:16,
+    marginTop: -23,
+  },
   text:{
     textAlign: 'center',
     color: '#212325',
@@ -96,3 +103,5 @@ const styles = StyleSheet.create({
      fontWeight: 'bold'
    },
 });
+
+

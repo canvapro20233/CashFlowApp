@@ -1,13 +1,17 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 import showImg from "./assets/show.png"
+import icon from "./assets/arrow.png"
+
 
 const LoginPage = () => {
  
   return (
     <View style={styles.container}>
-    {/* <Image style={styles.photo} source={productImg}/> */}
-      <Text style={styles.text}>Login</Text>
+    <Text style={styles.text}>Login</Text>
+    <TouchableOpacity>
+       <Image style={styles.photo} source={icon}/>
+    </TouchableOpacity>
       <TextInput style={styles.input}
        placeholder='Email'
       />
@@ -41,6 +45,10 @@ const LoginPage = () => {
 export default LoginPage;
 
 const styles = StyleSheet.create({
+  photo:{
+    marginLeft:16,
+    marginTop: -23,
+  },
   text:{
     textAlign: 'center',
     color: '#212325',

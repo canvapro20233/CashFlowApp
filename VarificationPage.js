@@ -1,11 +1,15 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import b1 from "./assets/b1.png"
+import icon from './assets/arrow.png'
 
-const SplashScreen = () => {
+
+const VarificationPage = () => {
   return (
     <View>
       <Text style={styles.text}>Verification</Text>
+      <TouchableOpacity>
+       <Image style={styles.photo} source={icon}/>
+    </TouchableOpacity>
       <Text style={styles.text1}>Enter your</Text>
       <Text style={styles.text2}>Verification Code</Text>
       <Text style={styles.text3}> 8 2 </Text>
@@ -21,52 +25,21 @@ const SplashScreen = () => {
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.signup}>
-        <Text style={styles.signuptext}>Continue</Text>
+        <Text style={styles.signuptext}>Verify</Text>
       </TouchableOpacity>
 
-      <View style={styles.card}>
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity>
-        <Image style={styles.b1} source={b1}/>
-        <Text style={styles.buttonText}>1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Image style={styles.btn1} source={b1}/>
-      </TouchableOpacity><TouchableOpacity>
-        <Image style={styles.btn1} source={b1}/>
-      </TouchableOpacity>
-      </View>
-
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity>
-        <Image style={styles.b1} source={b1}/>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Image style={styles.btn1} source={b1}/>
-      </TouchableOpacity><TouchableOpacity>
-        <Image style={styles.btn1} source={b1}/>
-      </TouchableOpacity>
-      </View>
-      
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity>
-        <Image style={styles.b1} source={b1}/>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Image style={styles.btn1} source={b1}/>
-      </TouchableOpacity><TouchableOpacity>
-        <Image style={styles.btn1} source={b1}/>
-      </TouchableOpacity>
-      </View>
-      </View>
 
     </View>    
   );
 }
 
-export default SplashScreen;
+export default VarificationPage;
 
 const styles = StyleSheet.create({
+  photo:{
+  marginLeft: 16,
+  marginTop: -23,
+  },
     text:{
         textAlign: 'center',
         color: '#212325',
@@ -135,33 +108,5 @@ const styles = StyleSheet.create({
        signuptext:{
          color:"white",
          fontWeight: 'bold'
-       },
-       card: {
-        width: '100%',
-        height: 480,
-        backgroundColor: '#D1D5DB',
-      },
-      buttonContainer: {
-        flexDirection: 'row',
-        marginTop: 5,
-      },
-      b1:{
-        marginLeft: 11,
-        width:110,
-        borderRadius:5
-      },
-      btn1:{
-        marginLeft: 5,
-        width:110,
-        borderRadius:5
-      },
-      buttonText: {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: [{ translateX: -5 }, { translateY: -7 }], 
-        color: '#FFFFFF',
-        fontWeight: 'bold',
-        fontSize: 16,
-      }      
+       },  
 });

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
-// import arrowImg from "./assets/arrow left.png"
+import icon from "./assets/arrow.png"
 import googletImg from "./assets/google.png"
 import showImg from "./assets/show.png"
 
 const SignUpPage = () => {
-  const [isChecked, setChecked] = useState(false);
+  // const [isChecked, setChecked] = useState(false);
   // const [showPassword, setShowPassword] = useState(false);
 
   // const toggleShowPassword = () => {
@@ -14,8 +14,10 @@ const SignUpPage = () => {
 
   return (
     <View style={styles.container}>
-    {/* <Image style={styles.photo} source={productImg}/> */}
       <Text style={styles.text}>Sign Up</Text>
+      <TouchableOpacity>
+       <Image style={styles.photo} source={icon}/>
+    </TouchableOpacity>
       <TextInput style={styles.input}
        placeholder='Name'
       />
@@ -33,14 +35,14 @@ const SignUpPage = () => {
      <Image source={showImg}/>
       </TouchableOpacity>
       </View>
-      <View style={styles.checkboxContainer}>
+      {/* <View style={styles.checkboxContainer}>
         <CheckBox
           value={isChecked}
           onValueChange={() => setChecked(!isChecked)}
           style={styles.checkbox}
         />
         <Text style={styles.label}>I agree to the terms and conditions</Text>
-      </View>
+      </View> */}
 
      <TouchableOpacity style={styles.signup}>
           <Text style={styles.signuptext}>Sign Up</Text>
@@ -67,6 +69,10 @@ const SignUpPage = () => {
 export default SignUpPage;
 
 const styles = StyleSheet.create({
+  photo:{
+    marginLeft: 16,
+    marginTop: -23,
+  },
     text:{
       textAlign: 'center',
       color: '#212325',
