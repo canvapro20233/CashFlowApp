@@ -8,22 +8,41 @@ import BillSplitter from "../Component/BillSplitter";
 import { Provider } from "react-redux";
 import store from "../store";
 import ExpenseTransaction from "../Component/ExpenseTransaction";
+import { View,Image } from "react-native";
 
 const screens=()=>{
-    const stack = createBottomTabNavigator()
+    const tab = createBottomTabNavigator()
+
+    const screenOptions={
+        tabBarShowLabel : false,
+        headerShown : false,
+        tabBarStyle : {
+            pesition : 'absolute',
+            height : 90
+        }
+    }
 
     return(
         <Provider store={store}>
         <NavigationContainer>
-            <stack.Navigator screenOptions={{headerShown : false}}
-            initialRouteName="ExpenseTransaction">
-                <stack.Screen name="ExpenseTransaction" component={ExpenseTransaction}></stack.Screen>
-                <stack.Screen name="HomeScreen" component={HomeScreen}></stack.Screen>
-                <stack.Screen name="Expense" component={Expense}></stack.Screen>
-                <stack.Screen name="Transaction" component={Transaction}></stack.Screen>
-                <stack.Screen name="BillSplitter" component={BillSplitter}></stack.Screen>
+            <tab.Navigator screenOptions={screenOptions} 
 
-            </stack.Navigator>
+            initialRouteName="ExpenseTransaction">
+                <tab.Screen 
+                name="ExpenseTransaction" component={ExpenseTransaction}></tab.Screen>
+                <tab.Screen
+                options={{
+                    tabBarIcon:({focused})=>{
+                        return(
+                        <Image color={focused ? "#123abc" : null} style={{alignItems:'center',justifyContent:'center'}} source={require("../assets/home.png")}></Image>
+                        )
+                    }
+                }}
+                name="HomeScreen" component={HomeScreen}></tab.Screen>
+                <tab.Screen name="Expense" component={Expense}></tab.Screen>
+                <tab.Screen name="Transaction" component={Transaction}></tab.Screen>
+                <tab.Screen name="BillSplitter" component={BillSplitter}></tab.Screen>
+            </tab.Navigator>
             
         </NavigationContainer>
 
