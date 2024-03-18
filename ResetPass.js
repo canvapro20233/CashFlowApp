@@ -1,25 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 import showImg from "./assets/show.png"
+import hideImg from "./assets/hide.png"
 import icon from "./assets/arrow.png"
 
-const ResetPass = () => {
+const ResetPass = ({ navigation }) => {
+
+  const [showPassword, setShowPassword] = useState(false);
  
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Reset Password</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('ForgetPassword')}>
        <Image style={styles.photo} source={icon}/>
       </TouchableOpacity>
 
       <View style={styles.passwordContainer}>
-      <TextInput style={styles.passwordInput}
-      placeholder='New password'
-      secureTextEntry
-     />
-     <TouchableOpacity  style={styles.show}>
-     <Image source={showImg}/>
-      </TouchableOpacity>
+        <TextInput style={styles.passwordInput}
+          placeholder=' New Password'
+          secureTextEntry={!showPassword}
+        />
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+          <Image source={showPassword ? hideImg : showImg}/>
+        </TouchableOpacity>
       </View>
 
       <View style={styles.passwordContainer1}>
@@ -32,7 +35,7 @@ const ResetPass = () => {
       </TouchableOpacity>
       </View>
 
-     <TouchableOpacity style={styles.signup}>
+     <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('Login')}>
           <Text style={styles.signuptext}>Continue</Text>
         </TouchableOpacity>
     </View>

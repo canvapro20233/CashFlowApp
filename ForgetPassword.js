@@ -2,12 +2,12 @@ import React from 'react';
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 import icon from "./assets/arrow.png"
 
-const ForgetPassword = () => {
+const ForgetPassword = ({ navigation }) => {
  
   return (
     <View>
       <Text style={styles.text}>Forgot Password</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
        <Image style={styles.photo} source={icon}/>
       </TouchableOpacity>
 
@@ -18,7 +18,7 @@ const ForgetPassword = () => {
        placeholder='Email'
       />
 
-     <TouchableOpacity style={styles.signup}>
+     <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('ResetPass')}>
           <Text style={styles.signuptext}>Continue</Text>
         </TouchableOpacity>
     </View>

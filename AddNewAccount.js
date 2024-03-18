@@ -1,5 +1,5 @@
-import React from 'react';
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
+import { useState } from 'react';
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native';
 import icon from "./assets/arrow-left.png"
 import America from "./assets/America.png"
 import BCA from "./assets/BCA.png"
@@ -9,12 +9,17 @@ import jago from "./assets/jago.png"
 import mandiri from "./assets/mandiri.png"
 import paypal from "./assets/paypal.png"
 
-const ResetPass = () => {
- 
+const AddNewAccount = () => {
+
+  const [clickedId, setClickedId] = useState(null)
+  const handleButtonPress = (id) => {
+    setClickedId(id);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Add new wallet</Text>
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('Setup')}>
        <Image style={styles.photo} source={icon}/>
     </TouchableOpacity>
       <Text style={styles.text1}>Balance</Text>
@@ -34,71 +39,49 @@ const ResetPass = () => {
       <Text style={styles.bank}>Bank</Text>
 
       <View style={styles.buttonContainer}>
-      <TouchableOpacity 
-      style={{backgroundColor: '#F1F1FA', 
-      borderRadius:10,
-      paddingHorizontal:26,
-      marginLeft:14,
-      paddingVertical:10}}>
-        <Image style={{height:24, width:24 }} source={Chase}/>
+      <TouchableOpacity
+            onPress={() => handleButtonPress('chase')}
+            style={clickedId === 'chase' ? styles.buttonActive : styles.button}>
+            <Image style={styles.btn} source={Chase}/>
       </TouchableOpacity>
 
       <TouchableOpacity
-      style={{backgroundColor: '#F1F1FA', 
-      borderRadius:10,
-      paddingHorizontal:26,
-      marginLeft:5,
-      paddingVertical:10}}>
-        <Image style={styles.btn} source={paypal}/>
-      </TouchableOpacity>
+            onPress={() => handleButtonPress('paypal')}
+            style={clickedId === 'paypal' ? styles.buttonActive1 : styles.button1}>
+            <Image style={styles.btn} source={paypal}/>
+          </TouchableOpacity>
 
-      <TouchableOpacity
-      style={{backgroundColor: '#F1F1FA', 
-      borderRadius:10,
-      paddingHorizontal:26,
-      marginLeft:5,
-      paddingVertical:10}}>
-        <Image style={styles.btn} source={citi}/>
-      </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleButtonPress('citi')}
+            style={clickedId === 'citi' ? styles.buttonActive1 : styles.button1}>
+            <Image style={styles.btn} source={citi}/>
+          </TouchableOpacity>
 
-      <TouchableOpacity
-      style={{backgroundColor: '#F1F1FA', 
-      borderRadius:10,
-      paddingHorizontal:26,
-      marginLeft:5,
-      paddingVertical:10}}>
-        <Image style={styles.btn} source={America}/>
-      </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleButtonPress('america')}
+            style={clickedId === 'america' ? styles.buttonActive1 : styles.button1}>
+            <Image style={styles.btn} source={America}/>
+          </TouchableOpacity>
       </View>
 
       <View style={styles.buttonContainer}>
-      <TouchableOpacity
-      style={{backgroundColor: '#F1F1FA', 
-      borderRadius:10,
-      paddingHorizontal:30,
-      marginLeft:14,
-      paddingVertical:10}}>
-        <Image style={styles.Jago} source={jago}/>
-      </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleButtonPress('jago')}
+            style={clickedId === 'jago' ? styles.buttonActive : styles.button}>
+            <Image style={styles.btn} source={jago}/>
+          </TouchableOpacity>
 
-      <TouchableOpacity
-      style={{backgroundColor: '#F1F1FA', 
-      borderRadius:10,
-      paddingHorizontal:30,
-      marginLeft:11,
-      paddingVertical:10}}>
-        <Image style={styles.btn2} source={mandiri}/>
-      </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => handleButtonPress('mandiri')}
+            style={clickedId === 'mandiri' ? styles.buttonActive2 : styles.button2}>
+            <Image style={styles.btn} source={mandiri}/>
+          </TouchableOpacity>
 
-      <TouchableOpacity
-      style={{backgroundColor: '#F1F1FA', 
-      borderRadius:10,
-      paddingHorizontal:30,
-      marginLeft:11,
-      paddingVertical:10}}>
-        <Image style={styles.btn2} source={BCA}/>
-      </TouchableOpacity>
-
+          <TouchableOpacity
+            onPress={() => handleButtonPress('BCA')}
+            style={clickedId === 'BCA' ? styles.buttonActive2 : styles.button2}>
+            <Image style={styles.btn} source={BCA}/>
+          </TouchableOpacity>
         </View>
       <TouchableOpacity style={styles.signup}>
           <Text style={styles.signuptext}>Continue</Text>
@@ -108,7 +91,7 @@ const ResetPass = () => {
   );
 }
 
-export default ResetPass;
+export default AddNewAccount;
 
 const styles = StyleSheet.create({
   container:{
@@ -194,5 +177,56 @@ signup:{
    buttonContainer: {
     flexDirection: 'row',
     marginTop: 10,
+  },
+  button:{
+    backgroundColor: '#F1F1FA', 
+    borderRadius:10,
+    paddingHorizontal:26,
+    marginLeft:15,
+    paddingVertical:10
+  },
+  button1:
+  {backgroundColor: '#F1F1FA', 
+    borderRadius:10,
+    paddingHorizontal:26,
+    marginLeft:5,
+    paddingVertical:10
+  },
+  button2:
+  {backgroundColor: '#F1F1FA', 
+    borderRadius:10,
+    paddingHorizontal:30,
+    marginLeft:14,
+    paddingVertical:10
+  },
+  buttonActive: 
+  {
+    backgroundColor: '#EEE5FF',
+    borderColor: '#7F3DFF',
+    borderRadius:10,
+    paddingHorizontal:26,
+    marginLeft:15,
+    paddingVertical:10,
+    borderWidth: 1,
+  },
+  buttonActive1: 
+  {
+    backgroundColor: '#EEE5FF',
+    borderColor: '#7F3DFF',
+    borderRadius:10,
+    paddingHorizontal:26,
+    marginLeft:5,
+    paddingVertical:10,
+    borderWidth: 1,
+  },
+  buttonActive2: 
+  {
+    backgroundColor: '#EEE5FF',
+    borderColor: '#7F3DFF',
+    borderRadius:10,
+    paddingHorizontal:26,
+    marginLeft:20,
+    paddingVertical:10,
+    borderWidth: 1,
   },
 });

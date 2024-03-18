@@ -1,41 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 import showImg from "./assets/show.png"
+import hideImg from "./assets/hide.png"
 import icon from "./assets/arrow.png"
 
 
-const LoginPage = () => {
+const LoginPage = ({ navigation }) => {
+
+  const [showPassword, setShowPassword] = useState(false);
  
   return (
     <View style={styles.container}>
     <Text style={styles.text}>Login</Text>
-    <TouchableOpacity>
+    <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
        <Image style={styles.photo} source={icon}/>
     </TouchableOpacity>
       <TextInput style={styles.input}
        placeholder='Email'
       />
       <View style={styles.passwordContainer}>
-      <TextInput style={styles.passwordInput}
-      placeholder='Password'
-      secureTextEntry
-     />
-     <TouchableOpacity  style={styles.show}>
-     <Image source={showImg}/>
-      </TouchableOpacity>
+        <TextInput style={styles.passwordInput}
+          placeholder='Password'
+          secureTextEntry={!showPassword}
+        />
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+          <Image source={showPassword ? hideImg : showImg}/>
+        </TouchableOpacity>
       </View>
-     <TouchableOpacity style={styles.signup}>
+     <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('Success')}>
           <Text style={styles.signuptext}>Login</Text>
         </TouchableOpacity>
         <View>
           <TouchableOpacity>
-            <Text style={styles.forget}>Forgot Password?</Text>
+            <Text style={styles.forget} onPress={() => navigation.navigate('ForgetPassword')}>Forgot Password?</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.login}>
         <Text style={styles.text2}>Don’t have an account yet?</Text>
         <TouchableOpacity>
-          <Text style={styles.logint}>Sign Up</Text>
+          <Text style={styles.logint} onPress={() => navigation.navigate('SignUp')}>Sign Up</Text>
         </TouchableOpacity>
         </View>
     </View>

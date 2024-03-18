@@ -3,11 +3,11 @@ import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import icon from './assets/arrow.png'
 
 
-const VarificationPage = () => {
+const VarificationPage = ({ navigation }) => {
   return (
     <View>
       <Text style={styles.text}>Verification</Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
        <Image style={styles.photo} source={icon}/>
     </TouchableOpacity>
       <Text style={styles.text1}>Enter your</Text>
@@ -24,7 +24,7 @@ const VarificationPage = () => {
         <Text style={styles.text8}> I didn’t received the code? Send again </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.signup}>
+      <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('Success')}>
         <Text style={styles.signuptext}>Verify</Text>
       </TouchableOpacity>
 

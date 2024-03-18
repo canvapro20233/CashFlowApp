@@ -1,16 +1,14 @@
 import React from 'react';
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
 
-const Setup = () => {
+const Setup = ({ navigation }) => {
  
   return (
     <View>
-    {/* <Image style={styles.photo} source={productImg}/> */}
-
       <Text style={styles.text1}>Let’s setup your account!</Text>
       <Text style={styles.text2}>Account can be your bank, credit card or your wallet.</Text>
 
-     <TouchableOpacity style={styles.signup}>
+     <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('AddNewAccount')}>
           <Text style={styles.signuptext}>Let’s go</Text>
         </TouchableOpacity>
     </View>

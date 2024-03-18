@@ -1,50 +1,72 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native';
 import icon from "./assets/arrow.png"
 import googletImg from "./assets/google.png"
 import showImg from "./assets/show.png"
+import hideImg from "./assets/hide.png"
+import { useFormik } from "formik";
+import { REGISTRATION_SCHEMA } from "./formikValidation";
+import CheckBox from 'react-native-check-box';
 
-const SignUpPage = () => {
-  // const [isChecked, setChecked] = useState(false);
-  // const [showPassword, setShowPassword] = useState(false);
+const SignUpPage = ({ navigation }) => {
+  const [isChecked, setChecked] = useState(false);
 
-  // const toggleShowPassword = () => {
-  //   setShowPassword(!showPassword);
-  // };
+  const [showPassword, setShowPassword] = useState(false);
+ 
+  const formik = useFormik({
+    initialValues: {
+        Name: '',
+        email: '',
+        password: ''
+    },
+    validationSchema: REGISTRATION_SCHEMA,      
+    onSubmit: (values) => {
+        console.log(values);  
+    }
+})
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Sign Up</Text>
-      <TouchableOpacity>
+      <TouchableOpacity  onPress={() => navigation.navigate('Onboarding')}>
        <Image style={styles.photo} source={icon}/>
     </TouchableOpacity>
-      <TextInput style={styles.input}
+      <TextInput
+       value={formik.values.firstName}
        placeholder='Name'
+       onChangeText={formik.handleChange('Name')}
+       style={[styles.input, formik.errors.Name ? styles.errorBorder : '']}
       />
 
-      <TextInput style={styles.input1}
+      <TextInput 
+       style={styles.input1}
        placeholder='Email'
       />
 
       <View style={styles.passwordContainer}>
-      <TextInput style={styles.passwordInput}
-      placeholder='Password'
-      secureTextEntry
-     />
-     <TouchableOpacity  style={styles.show}>
-     <Image source={showImg}/>
-      </TouchableOpacity>
-      </View>
-      {/* <View style={styles.checkboxContainer}>
-        <CheckBox
-          value={isChecked}
-          onValueChange={() => setChecked(!isChecked)}
-          style={styles.checkbox}
+        <TextInput style={styles.passwordInput}
+          placeholder='Password'
+          secureTextEntry={!showPassword}
         />
-        <Text style={styles.label}>I agree to the terms and conditions</Text>
-      </View> */}
+        <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+          <Image source={showPassword ? hideImg : showImg}/>
+        </TouchableOpacity>
+      </View>
 
-     <TouchableOpacity style={styles.signup}>
+      <View style={styles.checkboxContainer}>
+        <CheckBox 
+          isChecked={isChecked} 
+          onClick={() => setChecked(!isChecked)}
+          style={styles.checkbox}
+          checkBoxColor="#7F3DFF" 
+        />
+        <View>
+          <Text style={styles.label}>By signing up, you agree to</Text>
+          <Text style={styles.label1}>the Terms of Service and Privacy Policy</Text>
+        </View>
+      </View>
+
+     <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('Varification')}>
           <Text style={styles.signuptext}>Sign Up</Text>
         </TouchableOpacity>
 
@@ -71,12 +93,12 @@ export default SignUpPage;
 const styles = StyleSheet.create({
   photo:{
     marginLeft: 16,
-    marginTop: -23,
+    marginTop: -28,
   },
     text:{
       textAlign: 'center',
       color: '#212325',
-      fontSize: 30,
+      fontSize: 20,
       marginTop: 60,
       fontWeight: '900'
     },
@@ -186,10 +208,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center'
       },
-      // photo:{
-    //     marginTop: 45,
-
-    // },
+      errorBorder: {
+        borderColor: 'red'
+      },
     checkboxContainer: {
       flexDirection: 'row',
       alignItems: 'center',
@@ -201,8 +222,12 @@ const styles = StyleSheet.create({
     },
     label: {
       marginLeft: 10,
-      fontSize: 16,
       fontWeight: '900',
-      color: '#6C6C6C',
+      color: '#000',
+    },
+    label1: {
+      marginLeft: 10,
+      fontWeight: '900',
+      color: '#7F3DFF',
     },
 });
