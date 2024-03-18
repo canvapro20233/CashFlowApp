@@ -151,7 +151,8 @@ const styles = StyleSheet.create({
                 borderRadius: 15,
                 backgroundColor: "#FCEED4",
   },
-  contionue_box: {
+  contionue_box:
+   {
     borderWidth: 0,
     height: 60,
     borderRadius: 20,
