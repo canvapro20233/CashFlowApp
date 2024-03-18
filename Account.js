@@ -53,13 +53,11 @@ const Account=()=>{
                 
                 <Text style={styles.box1}></Text>
                 <Text style={styles.text1}>Wallet</Text>
-                
 
-                
                 <Text style={styles.box2}></Text>
                 <Text style={styles.text2}>Chase</Text>
 
-                
+
                 <Text style={styles.box3}></Text>
                 <Text style={styles.text3}>Citi</Text>
 

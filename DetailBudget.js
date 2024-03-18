@@ -3,7 +3,7 @@ import {View,Text,Image,StyleSheet, TouchableOpacity} from 'react-native';
 import icon from './assets/arrow left.png'
 import icon1 from './assets/trash.png'
 import icon2 from './assets/shopping-bag.png'
-import icon3 from './assets/$0.png'
+
 
 
 const DetailBudget=()=>{
@@ -28,10 +28,10 @@ const DetailBudget=()=>{
                 <Text style={styles.shopping}>Shopping</Text>
                 <View>
                     <Text style={styles.text}>Remaining</Text>
-                    <Image
-                        source={icon3}
-                        style={{marginTop:12,marginLeft:165}}
-                    />
+                    <Text style={{marginTop:15,marginLeft:172,fontSize:55}}>$0</Text>
+                    
+                        {/* style={{marginTop:12,marginLeft:165}} */}
+                    
                     <Text style={styles.shape2}></Text>
                     <View>
                         <Text style={styles.shape3}></Text>

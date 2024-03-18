@@ -1,5 +1,5 @@
 import React from "react";
-import { View ,StyleSheet,Text,Image} from "react-native";
+import { View ,StyleSheet,Text,Image,TouchableOpacity} from "react-native";
 import icon from './assets/arrow left.png'
 import icon1 from './assets/trash.png'
 import icon2 from './assets/shopping-bag.png'
@@ -40,13 +40,40 @@ const Remove_Budget=()=>{
                         <Text style={styles.shape6}></Text>
                         <Text style={styles.text1}>You’ve exceed the limit</Text>
                     </View>
-                    <View>
-                    <Text style={{fontSize:15,color:'black',marginLeft:15}}>Remove this budget?</Text>
+                    {/* <View>
+                    <Text style={{fontSize:15,color:'black',marginLeft:15,textAlign:'center',marginTop:-50}}>Remove this budget?</Text>
                         <Text style={styles.box}></Text>
-                        
-                    </View>
+
+                    </View> */}
                     
-           
+                <View>
+
+<Text style={styles.box4}></Text>
+                    <View>
+
+<TouchableOpacity>
+
+<Text style={{height:55,width:173,borderRadius:18,backgroundColor:'#7F3DFF',marginLeft:220,marginTop:-90}}></Text>
+<Text style={{fontSize:16,color:'white',marginLeft:295,marginTop:-38}}>Yes</Text>
+
+</TouchableOpacity>
+<TouchableOpacity>
+
+<Text style={{height:55,width:173,borderRadius:18,backgroundColor:'#EEE5FF',marginLeft:20,marginTop:-90}}></Text>
+<Text style={{fontSize:16,color:'#7F3DFF',marginLeft:95,marginTop:-38}}>No</Text>
+</TouchableOpacity>
+<View>
+
+
+<Text style={{color:'#000000',fontSize:22,textAlign:'center',marginTop:-210,padding:10}}>Remove this budget?</Text>
+<Text style={{color:'#91919F',marginBottom:-100,fontSize:15,textAlign:'center'}}>Are you sure do you wanna remove this Budget?</Text>
+
+</View>
+
+</View>
+
+</View>
+
                 </View>
             </View>
         </View>
@@ -144,6 +171,13 @@ const styles=StyleSheet.create({
     backgroundColor:'white',
     borderRadius:25,
     marginTop:165
-   }
+   },
+   box4:{
+    width:'100%',
+    height:225,
+    borderRadius:15,
+    backgroundColor:'white',
+    marginTop:232,
+}
 
 })

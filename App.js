@@ -1,35 +1,38 @@
 import { StatusBar } from 'expo-status-bar';
 import { View } from 'react-native';
+
+
+// import Budget from './Budget';
+// import Create_Budget from './Create_Budget';
+// import Budget1 from './Budget1';
+// import DetailBudget from './DetailBudget';
+// import Remove_Budget from './Remove_Budget';
+// import Profile from './Profile';
+// import Account from './Account';
 // import Camera from './Camera';
-// import Theme from './Theme'
-// import SettingNotification from './SettingNotification';
 // import Notification from './Notification';
 // import Setting from './Setting';
-// import DetailBudget from './DetailBudget';
-// import Create_Budget from './Create_Budget';
-// import Theme from './Theme';
-import Budget from './Budget';
-// import Profile from './Profile';
-// import Remove_Budget from './Remove_Budget';
-// import Account from './Account';
+// import Theme from './Theme'
+// import SettingNotification from './SettingNotification';
+import Logout from './Logout';
+
 
 export default function App() {
   return (
   <View>
-    {/* <Camera/> */}
-    {/* <Theme/> */}
-    {/* <SettingNotification/> */}
-    {/* <Notification/> */}
-    {/* <Setting/> */}
-    {/* <DetailBudget/> */}
-    {/* <Create_Budget/> */}
-    {/* <Theme/> */}
-    <Budget/>
-    {/* <Profile/>
-    */}
-    {/* <Remove_Budget/> */}
-    {/* <Account/> */}
-
+     {/* <Budget/> */}
+     {/* <Create_Budget/> */}
+     {/* <Budget1/> */}
+     {/* <DetailBudget/> */} 
+     {/* <Remove_Budget/>  */}
+     {/* <Profile/> */}
+     {/* <Account/> */}
+     {/* <Camera/> */}
+     {/* <Notification/> */}
+     {/* <Setting/> */}
+     {/* <Theme/> */}
+     {/* <SettingNotification/> */}
+     <Logout/>
   </View>
   );
 }

@@ -1,21 +1,20 @@
 import React from "react";
-import { View,StyleSheet ,Text,Image, TextInput,TouchableOpacity} from "react-native";
+import { View,Text,StyleSheet,TouchableOpacity,Image,TextInput} from "react-native";
 import icon from './assets/Vector.png'
 import icon1 from './assets/wallet 3.png'
 import icon2 from './assets/settings.png'
 import icon3 from './assets/logout.png'
-import icon4 from './assets/home.png'
-import icon5 from './assets/tran.png'
-import icon6 from './assets/user.png'
-import icon7 from './assets/Pie Chart.png'
-import icon8 from './assets/close.png'
-import icon9 from './assets/edit.png'
 
 
 
-const Profile=()=>{
+const Logout=()=>{
     return(
-        <View style={{backgroundColor:'#F4F4F4',height:900}}>
+        <View style={{backgroundColor:'#EFEFEF',height:900}}>
+         <Image
+                source={icon}
+                style={{marginLeft:370,marginTop:-42}}
+            />
+
         <TouchableOpacity>
             <Image
                 source= {{uri:'https://www.hdwallpapers.in/download/blonde_beautiful_girl_model_women_red_dress_blur_background_4k_hd_girls-HD.jpg'}}
@@ -31,11 +30,7 @@ const Profile=()=>{
 
             </View>
             <Text style={{fontSize:25,color:'#161719',marginLeft:140,marginTop:-50}}>Iriana Saliha</Text>
-            <Image
-                source={icon}
-                style={{marginLeft:370,marginTop:-42}}
-            />
-            <Text style={{height:38,width:38,borderColor:'#F6F1F1',borderRadius:10,borderWidth:2,marginLeft:363,marginTop:-30}}></Text>
+                       <Text style={{height:38,width:38,borderColor:'#F6F1F1',borderRadius:10,borderWidth:2,marginLeft:363,marginTop:-30}}></Text>
             <View>
                 <Text style={styles.box}></Text>
 
@@ -65,67 +60,50 @@ const Profile=()=>{
                 />
 
                 <View>
-                
+
                     <Text style={styles.box4}></Text>
-                    <Image
-                    source={icon4}
-                    style={{marginLeft:35,marginTop:-58}}
-                />
-                <Text style={{marginLeft:33,fontSize:10,color:'#C6C6C6',marginTop:5}}>Home</Text>
-                <Image
-              source={icon5}
-              style={{marginTop:-50,marginLeft:102}}
-            />
-            <Text style={{marginLeft:90,fontSize:10,color:'#C6C6C6',marginTop:3}}>Transaction</Text>
-            <Image
-              source={icon6}
-              style={{marginLeft:345,marginTop:-42}}
-            />
-            <Text style={{marginLeft:346,fontSize:10,color:'#7F3DFF',marginTop:3}}>Profile</Text>
-            <Image
-              source={icon7}
-              style={{marginLeft:280,marginTop:-42}}
-            />
-            <Text style={{marginLeft:274,fontSize:10,color:'#C6C6C6',marginTop:3}}>Budget</Text>
-                    
+                                        <View>
 
-                </View>
+                    <TouchableOpacity>
+
+                <Text style={{height:55,width:173,borderRadius:18,backgroundColor:'#7F3DFF',marginLeft:220,marginTop:-90}}></Text>
+                <Text style={{fontSize:16,color:'white',marginLeft:295,marginTop:-38}}>Yes</Text>
+
+                </TouchableOpacity>
+                <TouchableOpacity>
+
+                <Text style={{height:55,width:173,borderRadius:18,backgroundColor:'#EEE5FF',marginLeft:20,marginTop:-90}}></Text>
+                <Text style={{fontSize:16,color:'#7F3DFF',marginLeft:95,marginTop:-38}}>No</Text>
+                </TouchableOpacity>
                 <View>
-            <TouchableOpacity>
-              <Text style={{height:60,width:60 ,borderRadius:50,backgroundColor:'#7F3DFF',marginTop:-66,marginLeft:175}}></Text>
-              </TouchableOpacity>
-            
-              <Image
-                source={icon8}
-                // style={{marginTop:-50,marginLeft:100}}
-                style={{marginTop:-50,marginLeft:191}}
-              />
-              
+
+
+                <Text style={{color:'#000000',fontSize:22,textAlign:'center',marginTop:-180,padding:10}}>Logout?</Text>
+                    <Text style={{color:'#91919F',marginBottom:-100,fontSize:15,textAlign:'center'}}>Are you sure do you wanna logout?</Text>
+                </View>
+
+              </View>
+
             </View>
-            <Image
-                source={icon9}
-                // style={{marginTop:-50,marginLeft:100}}
-                style={{marginTop:-735,marginLeft:355}}
-              />
-              
-                
 
 
 
 
 
 
-             
             </View>
+
         </View>
-       
+
 
 
 
     )
 
+
+
 }
-export default Profile;
+export default Logout;
 const styles=StyleSheet.create({
     border:{
         height:90,
@@ -139,7 +117,7 @@ const styles=StyleSheet.create({
     box:{
         height:290,
         width:370,
-        backgroundColor:'#FFFFFF',
+        backgroundColor:'#E5E5E5',
         borderRadius:20,
         justifyContent:'center',
         textAlign:'center',
@@ -172,11 +150,10 @@ const styles=StyleSheet.create({
     },
     box4:{
         width:'100%',
-        height:100,
+        height:191,
         borderRadius:15,
         backgroundColor:'white',
-        marginTop:316,
+        marginTop:232,
     }
- 
-    
+
 });

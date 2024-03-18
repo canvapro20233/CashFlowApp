@@ -5,8 +5,7 @@ import icon1 from './assets/arrow down 2.png'
 import { Switch } from 'react-native-switch';
 
 
-const Create_Budget=()=>{
-  
+const Create_Budget1=()=>{
 
   const [value, setValue]=useState(true)
 
@@ -65,7 +64,7 @@ const Create_Budget=()=>{
         </View>
             )
 }
-export default Create_Budget;
+export default Create_Budget1;
 
 const styles = StyleSheet.create({
     container: {
