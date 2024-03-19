@@ -5,21 +5,42 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
+    Modal,
   } from "react-native";
   import { useState } from "react";
   import { TextInput } from "react-native";
 const ExpenseTransaction=()=>{
-    const [show,setshow]=useState(false)
+    const [show,setshow]=useState(true)
+
+    const Render=()=>{
+        return(
+            <Modal visible={show} animationType="slide" transparent={true}>
+                <View style={{borderWidth:0,height:200,marginTop:606,backgroundColor:"white",borderTopRightRadius:30,borderTopLeftRadius:30,alignItems:'center'}}>
+                    <Text style={{fontSize:19,fontWeight:700,marginTop:20}}>Remove this transaction?</Text>
+                    <Text style={{fontSize:19,marginTop:20,color:"#91919F",flexWrap:'wrap',textAlign:'center'}}>Are you sure do you wanna remove this transaction?</Text>
+                    <View style={{flexDirection:'row'}}>
+                        <TouchableOpacity onPress={()=>setshow(false)} style={{borderWidth:0,borderRadius:10,height:55,width:160,alignItems:'center',justifyContent:'center',marginTop:20,backgroundColor:"#EEE5FF"}}>
+                            <Text style={{color:"#7F3DFF",fontSize:18,fontWeight:600}}>No</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={()=>setshow(false)} style={{borderWidth:0,borderRadius:10,height:55,width:160,alignItems:'center',justifyContent:'center',marginLeft:30,marginTop:20,backgroundColor:"#7F3DFF"}}>
+                            <Text style={{color:"white",fontSize:18,fontWeight:600}}>Yes</Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </Modal>
+        )
+    }
     return(
         <View>
         <ScrollView>
             <View style={{backgroundColor:"#FD3C4A",height:300,borderBottomLeftRadius:20,borderBottomRightRadius:20}}>
 
             <View style={{flexDirection:'row',marginTop:70}}>
-                <Image style={{marginLeft:20}} source={require("../assets/arrow left.png")}></Image>
-                <Text style={{color:"white",fontSize:18,fontWeight:600,marginLeft:75}}>Detail Transaction</Text>
+                <Image style={{marginLeft:20}} source={require("../assets/arrow-left.png")}></Image>
+                <Text style={{color:"white",fontSize:18,fontWeight:600,marginLeft:75,marginTop:5}}>Detail Transaction</Text>
                 <TouchableOpacity onPress={()=>setshow(true)}>
                 <Image style={{marginLeft:85}} source={require("../assets/trash.png")}></Image>
+                { Render()}
                 </TouchableOpacity>
             </View>
 
@@ -107,7 +128,6 @@ const styles=StyleSheet.create({
     },
     sub_text2:{
         fontSize:17,textAlign:'center',marginTop:9
-        
     },
     contionue_box: {
         borderWidth: 0,

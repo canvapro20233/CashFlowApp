@@ -28,7 +28,7 @@ const screens=()=>{
         <NavigationContainer>
             <tab.Navigator screenOptions={screenOptions} 
 
-            initialRouteName="ExpenseTransaction">
+            initialRouteName="Expense">
                 {/* <tab.Screen 
                 name="ExpenseTransaction" component={ExpenseTransaction}></tab.Screen> */}
                 
@@ -49,7 +49,7 @@ const screens=()=>{
                         <Image tintColor={focused ? "#7F3DFF" : "#C6C6C6"} style={{alignItems:'center',justifyContent:'center'}} source={require("../assets/Transaction.png")}></Image>
                         )
                     }
-                }} name="Expense" component={Expense}></tab.Screen>
+                }} name="Expense" component={ExpenseTransaction}></tab.Screen>
 
 
 <tab.Screen options={{
@@ -66,7 +66,7 @@ const screens=()=>{
                 <tab.Screen options={{
                     tabBarIcon:({focused})=>{
                         return(
-                        <Image tintColor={focused ? "#7F3DFF" : "#C6C6C6"} style={{alignItems:'center',justifyContent:'center'}} source={require("../assets/Pie Chart.png")}></Image>
+                        <Image tintColor={focused ? "#7F3DFF" : "#C6C6C6"} style={{alignItems:'center',justifyContent:'center'}} source={require("../assets/pie-chart.png")}></Image>
                         )
                     }
                 }} name="Transaction" component={Transaction}></tab.Screen>

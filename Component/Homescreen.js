@@ -29,7 +29,7 @@ const HomeScreen = () => {
           </View>
           {/* October */}
           <View style={styles.October}>
-            <Image source={require('../assets/arrow down 2.png')} style={{marginTop:16,marginLeft:7}}></Image>
+            <Image source={require('../assets/arrow-down-2.png')} style={{marginTop:5,marginLeft:7}}></Image>
             <Text style={{ marginLeft: 10, marginTop: 8, fontSize: 15 }}>
               October
             </Text>
@@ -127,7 +127,7 @@ const HomeScreen = () => {
         {/* Transaction */}
         <View style={{borderWidth:0,height:90,margin:20, borderRadius:20, backgroundColor:'#FCFCFC',flexDirection:'row'}}>
             <View style={styles.shoping_whitebox}>
-              <Image source={require('../assets/shopping bag.png')} style={{margin:15}}></Image>
+              <Image source={require('../assets/shopping-bag.png')} style={{margin:10}}></Image>
             </View>
             <View style={{marginTop:18,marginLeft:10}}>
               <Text style={{fontSize:17,fontWeight:500}}>Shopping</Text>
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
   October: {
     borderWidth: 1,
     height: 40,
-    width: 100,
+    width: 110,
     marginTop: 50,
     marginLeft: 95,
     borderRadius: 50,

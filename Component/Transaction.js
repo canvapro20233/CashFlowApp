@@ -5,56 +5,22 @@ import {
   StyleSheet,
   TouchableOpacity,
   ScrollView,
+  Modal
+
 } from "react-native";
 import { useState } from "react";
-import { TextInput } from "react-native";
+
 
 const Transaction = () => {
     const [IncomeExpense,setIncomeExpense]=useState(0)
     const [sort,setsort]=useState(0)
     const [show,setshow]=useState(false)
 
-  return (
-    <ScrollView style={{ backgroundColor: show ? "C6C6C6" : "white" }}>
-      <View>
-        <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity style={styles.October}>
-            <Image
-              source={require("../assets/arrow down 2.png")}
-              style={{ marginTop: 16, marginLeft: 7 }}
-            ></Image>
-            <Text style={{ marginLeft: 10, marginTop: 8, fontSize: 15 }}>
-              Month
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={()=> setshow(true)} style={{borderWidth:1, height:45,width:45,borderRadius:10, marginTop:50,marginLeft:215,borderColor:'#F1F1FA'}}>
-                <Image source={require("../assets/sort.png")} style={{marginTop:12,marginLeft:9}}></Image>
-          </TouchableOpacity>
-        </View>
-
-        <View>
-            <Text style={{fontSize:21,fontWeight:700,marginTop:20,marginLeft:20}}>Today</Text>
-          </View>
-
-
-    {/* Transaction */}
-    <TouchableOpacity style={{borderWidth:0,height:90,margin:20, borderRadius:20, backgroundColor:'#FCFCFC',flexDirection:'row'}}>
-            <View style={styles.shoping_whitebox}>
-              <Image source={require('../assets/shopping bag.png')} style={{margin:15}}></Image>
-            </View>
-            <View style={{marginTop:18,marginLeft:10}}>
-              <Text style={{fontSize:17,fontWeight:500}}>Shopping</Text>
-              <Text style={{marginTop:8,color:'#91919F',fontWeight:500}}>Buy some grocery</Text>
-            </View>
-            <View style={{}}>
-              <Text style={{marginTop:18, marginLeft:90,color:'#FD3C4A',fontSize:18,fontWeight:600}}>-$120</Text>
-              <Text style={{marginTop:7, marginLeft:80,color:'#91919F'}}>10:00 AM</Text>
-            </View>
-        </TouchableOpacity>
-
-
-        { show ? <View style={{borderWidth:0, backgroundColor:'white',borderTopLeftRadius:20,borderTopRightRadius:20}}>
+    const Render=()=>{
+      return(
+        <Modal visible={show} animationType="slide" transparent={true}>
+          <View style={{ flex: 1 }}>
+        <View style={{borderWidth:0, backgroundColor:'white',borderTopLeftRadius:20,borderTopRightRadius:20,marginTop:80}}>
             <TouchableOpacity onPress={()=> setshow(false)}>
             <Image source={require("../assets/Line 5.png")} style={{marginTop:10,alignSelf:'center'}}></Image>
             </TouchableOpacity>
@@ -122,7 +88,51 @@ const Transaction = () => {
             <Text style={styles.continue_box_text}>Apply</Text>
           </TouchableOpacity>
 
-        </View> : null}
+        </View>
+        </View>
+        </Modal>
+      )
+    }
+
+  return (
+    <ScrollView style={{ backgroundColor: show ? "C6C6C6" : "white" }}>
+      <View>
+        <View style={{ flexDirection: "row" }}>
+          <TouchableOpacity style={styles.October}>
+            <Image
+              source={require("../assets/arrow-down-2.png")}
+              style={{ marginTop: 10, marginLeft: 7 }}
+            ></Image>
+            <Text style={{ marginLeft: 10, marginTop: 10, fontSize: 15 }}>
+              Month
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={()=> setshow(true)} style={{borderWidth:1, height:45,width:45,borderRadius:10, marginTop:50,marginLeft:215,borderColor:'#F1F1FA'}}>
+                <Image source={require("../assets/sort.png")} style={{marginTop:12,marginLeft:9}}></Image>
+                {Render()}
+          </TouchableOpacity>
+        </View>
+
+        <View>
+            <Text style={{fontSize:21,fontWeight:700,marginTop:20,marginLeft:20}}>Today</Text>
+          </View>
+
+
+    {/* Transaction */}
+    <TouchableOpacity style={{borderWidth:0,height:90,margin:20, borderRadius:20, backgroundColor:'#FCFCFC',flexDirection:'row'}}>
+            <View style={styles.shoping_whitebox}>
+              <Image source={require('../assets/shopping-bag.png')} style={{margin:10}}></Image>
+            </View>
+            <View style={{marginTop:18,marginLeft:10}}>
+              <Text style={{fontSize:17,fontWeight:500}}>Shopping</Text>
+              <Text style={{marginTop:8,color:'#91919F',fontWeight:500}}>Buy some grocery</Text>
+            </View>
+            <View style={{}}>
+              <Text style={{marginTop:18, marginLeft:90,color:'#FD3C4A',fontSize:18,fontWeight:600}}>-$120</Text>
+              <Text style={{marginTop:7, marginLeft:80,color:'#91919F'}}>10:00 AM</Text>
+            </View>
+        </TouchableOpacity>
 
       </View>
     </ScrollView>

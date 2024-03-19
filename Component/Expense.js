@@ -7,7 +7,6 @@ import {
   ScrollView,
 } from "react-native";
 import attachment from "../assets/attachment.png";
-import arrow from "../assets/arrow left.png";
 import Vector from "../assets/Vector.png";
 import { useState } from "react";
 import { TextInput } from "react-native";
@@ -38,7 +37,7 @@ const Expense = () => {
         <View style={{ flexDirection: "row" }}>
           <View>
             <Image
-              source={arrow}
+              source={require("../assets/arrow-left.png")}
               style={{ marginTop: 65, marginLeft: 20 }}
             ></Image>
           </View>
@@ -58,7 +57,7 @@ const Expense = () => {
             <Text style={styles.border_box_text}>{categories}</Text>
             <Image
               source={Vector}
-              style={{ marginTop: 25, marginLeft: 200 }}
+              style={{ marginTop: 20, marginLeft: 330,position:'absolute' }}
             ></Image>
           </TouchableOpacity>
 
@@ -114,7 +113,7 @@ const Expense = () => {
             <Text style={styles.border_box_text}>{wallets}</Text>
             <Image
               source={Vector}
-              style={{ marginTop: 25, marginLeft: 225 }}
+              style={{ marginTop: 20, marginLeft: 330,position:'absolute' }}
             ></Image>
           </TouchableOpacity>
 
