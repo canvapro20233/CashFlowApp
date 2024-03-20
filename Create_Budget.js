@@ -5,8 +5,8 @@ import icon1 from './assets/arrow down 2.png'
 import { Switch } from 'react-native-switch';
 
 
-const Create_Budget=()=>{
-  
+const Create_Budget=({navigation})=>{
+
 
   const [value, setValue]=useState(true)
 
@@ -15,18 +15,20 @@ const Create_Budget=()=>{
         <View style={styles.container}>
                 <View>
           <Text style={styles.budget}>Create Budget</Text>
+          <TouchableOpacity onPress={()=>navigation.navigate("Budget")}>
           <Image
             source={icon}
-            style={{marginLeft:16,marginTop:-23}}
+            style={{marginLeft:16,marginTop:-25}}
           />
+          </TouchableOpacity>
         </View>
         <View>
           <Text style={styles.tex}>How much do yo want to spend?</Text>
           <Text style={styles.tex1}>$0</Text>
         </View>
-        <View style={styles.card}>
-        <Text style={styles.input}>Category</Text>
-        <Se></Se>
+         <View style={styles.card}>
+         <Text style={styles.input}>Category</Text>
+
       <TouchableOpacity>
           <Image
             source={icon1}
@@ -51,18 +53,14 @@ const Create_Budget=()=>{
            switchBorderRadius={20}
 
            />
-           <TouchableOpacity style={styles.signup}>
+           <TouchableOpacity style={styles.signup} onPress={()=>navigation.navigate("Budget1")}>
           <Text style={styles.signuptext}>Continue</Text>
         </TouchableOpacity>
 
                 </View>
         </View>
-
-
-
-
-
         </View>
+
             )
 }
 export default Create_Budget;

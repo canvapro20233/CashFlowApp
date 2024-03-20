@@ -13,7 +13,7 @@ import icon9 from './assets/edit.png'
 
 
 
-const Profile=()=>{
+const Profile=({navigation})=>{
     return(
         <View style={{backgroundColor:'#F4F4F4',height:900}}>
         <TouchableOpacity>
@@ -79,14 +79,16 @@ const Profile=()=>{
             <Text style={{marginLeft:90,fontSize:10,color:'#C6C6C6',marginTop:3}}>Transaction</Text>
             <Image
               source={icon6}
-              style={{marginLeft:345,marginTop:-42}}
+              style={{marginLeft:349,marginTop:-42}}
             />
             <Text style={{marginLeft:346,fontSize:10,color:'#7F3DFF',marginTop:3}}>Profile</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate("Budget")}>
             <Image
               source={icon7}
-              style={{marginLeft:280,marginTop:-42}}
+              style={{marginLeft:278,marginTop:-42}}
             />
-            <Text style={{marginLeft:274,fontSize:10,color:'#C6C6C6',marginTop:3}}>Budget</Text>
+            </TouchableOpacity>
+            <Text style={{marginLeft:275,fontSize:10,color:'#C6C6C6',marginTop:-13}}>Budget</Text>
                     
 
                 </View>

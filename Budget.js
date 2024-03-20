@@ -4,11 +4,11 @@ import icon1 from './assets/Vector.png'
 import icon2 from './assets/arrow right 2.png'
 import icon3 from './assets/home.png'
 import icon4 from './assets/tran.png'
-import icon5 from './assets/user.png'
+import icon5 from './assets/user1.png'
 import icon6 from './assets/pie-chart.png'
 import icon7 from './assets/close.png'
 
-const Budget=()=>{
+const Budget=({navigation})=>{
     return(
         <View style={styles.container}>
         
@@ -54,16 +54,18 @@ const Budget=()=>{
                 </View>
 
                 <Text style={{color:'#C6C6C6',fontSize:10,marginLeft:37,marginTop:158}}>Home</Text>
-      <TouchableOpacity style={styles.signup}>
+      <TouchableOpacity style={styles.signup} onPress={()=>navigation.navigate("Create_Budget")}>
           <Text style={styles.signuptext}>Create Budget</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
       <Image
               source={icon5}
-              style={{marginLeft:332,marginTop:73}}
+              style={{marginLeft:339,marginTop:73}}
             />
+            </TouchableOpacity>
             <Image
               source={icon6}
-              style={{marginLeft:265,marginTop:-27}}
+              style={{marginLeft:263,marginTop:-27}}
             />
       
       

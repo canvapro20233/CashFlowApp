@@ -7,19 +7,20 @@ import icon4 from './assets/Ellipse 24.png'
 import icon5 from './assets/round.png'
 import icon6 from './assets/home.png'
 import icon7 from './assets/tran.png'
-import icon8 from './assets/user.png'
+import icon8 from './assets/user1.png'
 import icon9 from './assets/pie-chart.png'
 import icon10 from './assets/close.png'
 
 
-const Budget1=()=>{
+const Budget1=({navigation})=>{
     return(
         <View style={styles.container}>
-
+       <TouchableOpacity onPress={()=>navigation.navigate("Create_Budget")}>
         <Image
             source={icon1}
             style={{marginLeft:18,marginTop:80}}
         />
+        </TouchableOpacity>
         <View>
         <Image
             source={icon2}
@@ -68,7 +69,7 @@ const Budget1=()=>{
             <Text style={{color:'#91919F',marginLeft:28,paddingTop:10}}>$350 of $700</Text>
             </View>
            
-            <TouchableOpacity style={styles.signup}>
+            <TouchableOpacity style={styles.signup} onPress={()=>navigation.navigate("DetailBudget")}>
           <Text style={styles.signuptext}>Create Budget</Text>
       </TouchableOpacity>
             <View>
@@ -90,11 +91,13 @@ const Budget1=()=>{
 
             </View>
             <View>
+            <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
             <Image
               source={icon8}
               style={{marginLeft:332,marginTop:-42}}
             />
-            <Text style={{color:'#C6C6C6',fontSize:10,marginLeft:328,marginBottom:-870,marginTop:3}}>Profile</Text>
+            </TouchableOpacity>
+            <Text style={{color:'#C6C6C6',fontSize:10,marginLeft:328,marginBottom:-870,marginTop:-12}}>Profile</Text>
             </View>
             <View>
             <Image

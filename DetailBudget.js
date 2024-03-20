@@ -10,10 +10,12 @@ const DetailBudget=()=>{
     return(
         <View>
             <Text style={styles.DetailBudget}>DetailBudget</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate("Budget1")}>
             <Image
                 source={icon}
                 style={{marginLeft:16,marginTop:-17}}
             />
+            </TouchableOpacity>
             <Image
                 source={icon1}
                 style={{marginTop:-28,marginLeft:355}}

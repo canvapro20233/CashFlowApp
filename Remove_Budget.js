@@ -6,14 +6,16 @@ import icon2 from './assets/shopping-bag.png'
 import icon3 from './assets/$0.png'
 
 
-const Remove_Budget=()=>{
+const Remove_Budget=({navigation})=>{ 
     return(
         <View style={{backgroundColor:'#E0DBDB',height:900}}>
             <Text style={styles.DetailBudget}>DetailBudget</Text>
+            <TouchableOpacity onPress={()=>navigation.navigate("DetailBudget")}>
             <Image
                 source={icon}
                 style={{marginLeft:16,marginTop:-17}}
             />
+            </TouchableOpacity>
             <Image
                 source={icon1}
                 style={{marginTop:-28,marginLeft:355}}
@@ -51,17 +53,20 @@ const Remove_Budget=()=>{
 <Text style={styles.box4}></Text>
                     <View>
 
-<TouchableOpacity>
+
 
 <Text style={{height:55,width:173,borderRadius:18,backgroundColor:'#7F3DFF',marginLeft:220,marginTop:-90}}></Text>
 <Text style={{fontSize:16,color:'white',marginLeft:295,marginTop:-38}}>Yes</Text>
 
-</TouchableOpacity>
-<TouchableOpacity>
+
+<View>
 
 <Text style={{height:55,width:173,borderRadius:18,backgroundColor:'#EEE5FF',marginLeft:20,marginTop:-90}}></Text>
 <Text style={{fontSize:16,color:'#7F3DFF',marginLeft:95,marginTop:-38}}>No</Text>
-</TouchableOpacity>
+
+</View>
+
+
 <View>
 
 
