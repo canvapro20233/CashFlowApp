@@ -7,6 +7,8 @@ import icon from "./assets/arrow.png"
 const ResetPass = ({ navigation }) => {
 
   const [showPassword, setShowPassword] = useState(false);
+  const [rshowPassword, setRshowPassword] = useState(false);
+
  
   return (
     <View style={styles.container}>
@@ -28,10 +30,10 @@ const ResetPass = ({ navigation }) => {
       <View style={styles.passwordContainer1}>
       <TextInput style={styles.passwordInput}
       placeholder='Retype new password'
-      secureTextEntry
-     />
-     <TouchableOpacity  style={styles.show}>
-     <Image source={showImg}/>
+      secureTextEntry={!rshowPassword}
+      />
+      <TouchableOpacity onPress={() => setRshowPassword(!rshowPassword)}>
+        <Image source={rshowPassword ? hideImg : showImg}/>
       </TouchableOpacity>
       </View>
 

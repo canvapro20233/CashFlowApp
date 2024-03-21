@@ -3,11 +3,25 @@ import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} f
 import showImg from "./assets/show.png"
 import hideImg from "./assets/hide.png"
 import icon from "./assets/arrow.png"
+import { useFormik } from "formik";
+import { REGISTRATION_SCHEMA } from "./formikValidation";
 
 
 const LoginPage = ({ navigation }) => {
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+        email: '',
+        password: '',
+    },
+    validationSchema: REGISTRATION_SCHEMA,      
+    onSubmit: (values) => {
+        console.log(values); 
+        navigation.navigate('Success')
+    }
+})
  
   return (
     <View style={styles.container}>
@@ -15,19 +29,30 @@ const LoginPage = ({ navigation }) => {
     <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
        <Image style={styles.photo} source={icon}/>
     </TouchableOpacity>
-      <TextInput style={styles.input}
+    
+    <TextInput 
+       value={formik.values.email}
        placeholder='Email'
-      />
+       onChangeText={formik.handleChange('email')}
+       style={[styles.input, formik.errors.email ? styles.errorBorder : '']}
+   />
+     {formik.errors.email && <Text style={styles.errorMessage}>{formik.errors.email}</Text>}
+
       <View style={styles.passwordContainer}>
-        <TextInput style={styles.passwordInput}
+        <TextInput
+          value={formik.values.password}
           placeholder='Password'
+          onChangeText={formik.handleChange('password')}
+          style={[styles.passwordInput, formik.errors.password ? styles.errorBorder : '']}
           secureTextEntry={!showPassword}
         />
         <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
           <Image source={showPassword ? hideImg : showImg}/>
         </TouchableOpacity>
       </View>
-     <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('Success')}>
+      {formik.errors.password && <Text style={styles.errorMessage}>{formik.errors.password}</Text>}
+
+     <TouchableOpacity style={styles.signup} onPress={formik.handleSubmit}>
           <Text style={styles.signuptext}>Login</Text>
         </TouchableOpacity>
         <View>
@@ -51,6 +76,15 @@ const styles = StyleSheet.create({
   photo:{
     marginLeft:16,
     marginTop: -23,
+  },
+  errorBorder: {
+    borderColor: 'red'
+  },
+  errorMessage: {
+    color: 'red', 
+    marginLeft: 18, 
+    marginTop: 4, 
+    fontSize: 12,
   },
   text:{
     textAlign: 'center',

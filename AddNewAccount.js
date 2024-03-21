@@ -4,12 +4,12 @@ import icon from "./assets/arrow-left.png"
 import America from "./assets/America.png"
 import BCA from "./assets/BCA.png"
 import Chase from "./assets/Chase.png"
-import citi from "./assets/citi.png"
-import jago from "./assets/jago.png"
-import mandiri from "./assets/mandiri.png"
-import paypal from "./assets/paypal.png"
+import citi from "./assets/Citi.png"
+import jago from "./assets/Jago.png"
+import mandiri from "./assets/Mandiri.png"
+import paypal from "./assets/Paypal.png"
 
-const AddNewAccount = () => {
+const AddNewAccount = ({navigation}) => {
 
   const [clickedId, setClickedId] = useState(null)
   const handleButtonPress = (id) => {

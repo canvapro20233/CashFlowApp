@@ -23,8 +23,9 @@ export default function App() {
   return (
 
     <NavigationContainer>
-    <Stack.Navigator screenOptions={screen} initialRouteName="Onboarding">
-      <Stack.Screen name="Onboarding" component={Onboarding} options={{ headerTitle: '' }}/>
+    <Stack.Navigator screenOptions={screen} initialRouteName="SplashScreen">
+    <Stack.Screen name="SplashScreen" component={SplashScreen} />
+      <Stack.Screen name="Onboarding" component={Onboarding}/>
       <Stack.Screen name="SignUp" component={SignUpPage} />
       <Stack.Screen name="Varification" component={VarificationPage} />
       <Stack.Screen name="Login" component={LoginPage} />
@@ -35,8 +36,18 @@ export default function App() {
       <Stack.Screen name="AddNewAccount" component={AddNewAccount} />
     </Stack.Navigator>
   </NavigationContainer>
+
     // <View>
-    //   < SplashScreen /> */}
+    //   {/* < SplashScreen /> 
+    //   < Onboarding /> 
+    //   < SignUpPage />  */}
+    //   {/* < VarificationPage />  */}
+    //   {/* < LoginPage /> 
+    //   < ForgetPassword /> 
+    //   < ResetPass /> 
+    //   < Success /> 
+    //   < Setup /> 
+    //   < AddNewAccount />  */}
     // </View>
   );
 }

@@ -21,7 +21,8 @@ const SignUpPage = ({ navigation }) => {
     },
     validationSchema: REGISTRATION_SCHEMA,      
     onSubmit: (values) => {
-        console.log(values);  
+        console.log(values); 
+        navigation.navigate('Varification'); 
     }
 })
 
@@ -31,27 +32,37 @@ const SignUpPage = ({ navigation }) => {
       <TouchableOpacity  onPress={() => navigation.navigate('Onboarding')}>
        <Image style={styles.photo} source={icon}/>
     </TouchableOpacity>
+
       <TextInput
-       value={formik.values.firstName}
+       value={formik.values.Name}
        placeholder='Name'
        onChangeText={formik.handleChange('Name')}
        style={[styles.input, formik.errors.Name ? styles.errorBorder : '']}
       />
+      {formik.errors.Name && <Text style={styles.errorMessage}>{formik.errors.Name}</Text>}
 
       <TextInput 
-       style={styles.input1}
+       value={formik.values.email}
        placeholder='Email'
-      />
+       onChangeText={formik.handleChange('email')}
+       style={[styles.input1, formik.errors.email ? styles.errorBorder : '']}
+   />
+     {formik.errors.email && <Text style={styles.errorMessage}>{formik.errors.email}</Text>}
 
       <View style={styles.passwordContainer}>
-        <TextInput style={styles.passwordInput}
+        <TextInput
+          value={formik.values.password}
           placeholder='Password'
+          onChangeText={formik.handleChange('password')}
+          style={[styles.passwordInput, formik.errors.password ? styles.errorBorder : '']}
           secureTextEntry={!showPassword}
         />
         <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
           <Image source={showPassword ? hideImg : showImg}/>
         </TouchableOpacity>
       </View>
+      {formik.errors.password && <Text style={styles.errorMessage}>{formik.errors.password}</Text>}
+
 
       <View style={styles.checkboxContainer}>
         <CheckBox 
@@ -66,7 +77,7 @@ const SignUpPage = ({ navigation }) => {
         </View>
       </View>
 
-     <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('Varification')}>
+      <TouchableOpacity style={styles.signup} onPress={formik.handleSubmit}>
           <Text style={styles.signuptext}>Sign Up</Text>
         </TouchableOpacity>
 
@@ -167,7 +178,7 @@ const styles = StyleSheet.create({
         height:50,
         alignItems:"center",
         justifyContent:"center",
-        marginTop:110,
+        marginTop: 30,
         marginLeft: 18,
         marginBottom:5
       },
@@ -229,5 +240,11 @@ const styles = StyleSheet.create({
       marginLeft: 10,
       fontWeight: '900',
       color: '#7F3DFF',
+    },
+    errorMessage: {
+      color: 'red', 
+      marginLeft: 18, 
+      marginTop: 4, 
+      fontSize: 12,
     },
 });
