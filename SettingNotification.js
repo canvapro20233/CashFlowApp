@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import {Text, View,StyleSheet,Image} from 'react-native';
+import {Text, View,StyleSheet,Image,TouchableOpacity} from 'react-native';
 import { Switch } from 'react-native-switch';
 import icon from './assets/arrow left.png';
 
-const SettingNotification=()=>{
+const SettingNotification=({navigation})=>{
     const [value, setValue]=useState(true)
     const [value1, setValue1]=useState(true)
     
@@ -13,10 +13,13 @@ const SettingNotification=()=>{
 
         <View>
             <Text style={styles.notification} >Notification</Text>
+
+            <TouchableOpacity onPress={()=>navigation.navigate("Setting")}>
             <Image
             source={icon}
             style={{marginLeft:16,marginTop:-19}}
             />
+            </TouchableOpacity>
         </View>
 
         <View style={styles.singleBorder}></View>

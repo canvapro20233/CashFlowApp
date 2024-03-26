@@ -16,7 +16,7 @@ const Checkbox = ({ label, checked, onToggle }) => {
     );
   };
 
-const Theme=()=>{
+const Theme=({navigation})=>{
     const [checkbox1Checked, setCheckbox1Checked] = useState(false);
     const [checkbox2Checked, setCheckbox2Checked] = useState(false);
   
@@ -39,10 +39,13 @@ const Theme=()=>{
         <View style={styles.container}>
         
         <View>
+
+        <TouchableOpacity onPress={()=>navigation.navigate("Setting")}>
         <Image
             source={icon}
             style={{marginLeft:16,marginTop:90}}
         />
+        </TouchableOpacity>
             <Text style={styles.theme}>Theme</Text>
         </View>
 
@@ -76,6 +79,7 @@ export default Theme;
 const styles=StyleSheet.create({
     container:{
         backgroundColor:'white',
+        height:900,
     },
     theme:{
         textAlign:'center',

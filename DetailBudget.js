@@ -1,12 +1,27 @@
-import React from 'react';
-import {View,Text,Image,StyleSheet, TouchableOpacity} from 'react-native';
+import {View,Text,Image,StyleSheet, TouchableOpacity,Animated} from 'react-native';
 import icon from './assets/arrow left.png'
 import icon1 from './assets/trash.png'
 import icon2 from './assets/shopping-bag.png'
+import { useState ,useEffect} from 'react';
+import { TextInput } from 'react-native-gesture-handler';
 
 
 
-const DetailBudget=()=>{
+const DetailBudget=({navigation})=>{
+
+
+
+    const [progress, setProgress] = useState(new Animated.Value(0));
+
+    useEffect(() => {
+        
+        Animated.timing(progress, {
+            toValue: 100,
+            duration: 1500, 
+            useNativeDriver: false, 
+        }).start();
+    }, []);
+
     return(
         <View>
             <Text style={styles.DetailBudget}>DetailBudget</Text>
@@ -16,10 +31,13 @@ const DetailBudget=()=>{
                 style={{marginLeft:16,marginTop:-17}}
             />
             </TouchableOpacity>
+
+            <TouchableOpacity onPress={()=>navigation.navigate("Remove_Budget")}>
             <Image
                 source={icon1}
                 style={{marginTop:-28,marginLeft:355}}
             />
+            </TouchableOpacity>
             <View>
                 <Text style={styles.shape}></Text>
                 <Text style={styles.shape1}></Text>
@@ -30,11 +48,28 @@ const DetailBudget=()=>{
                 <Text style={styles.shopping}>Shopping</Text>
                 <View>
                     <Text style={styles.text}>Remaining</Text>
-                    <Text style={{marginTop:15,marginLeft:172,fontSize:55}}>$0</Text>
+                    <TextInput style={{marginTop:15,marginLeft:172,fontSize:55,color:'black'}}
+                        placeholder='$0'
+                    />
                     
                         {/* style={{marginTop:12,marginLeft:165}} */}
-                    
-                    <Text style={styles.shape2}></Text>
+
+                        <View>
+            <View style={styles.progressContainer}>
+                <Animated.View
+                    style={[
+                        styles.progressBar,
+                        {
+                            width: progress.interpolate({
+                                inputRange: [0, 100],
+                                outputRange: ['0%', '100%'],
+                            }),
+                        },
+                    ]}
+                />
+            </View>
+        </View>
+
                     <View>
                         <Text style={styles.shape3}></Text>
                         <Text style={styles.shape4}></Text>
@@ -42,7 +77,7 @@ const DetailBudget=()=>{
                         <Text style={styles.shape6}></Text>
                         <Text style={styles.text1}>You’ve exceed the limit</Text>
                     </View>
-                    <TouchableOpacity style={styles.signup}>
+                    <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate("")}>
           <Text style={styles.signuptext}>Edit</Text>
         </TouchableOpacity>
                 </View>
@@ -89,14 +124,21 @@ const styles=StyleSheet.create({
         marginTop:50,
         fontSize:22,
     },
-    shape2:{
-        height:12,
-        width:350,
-        backgroundColor:'#FCAC12',
-        borderRadius:24,
-        marginLeft:28,
-        marginTop:30,
+ 
+    progressContainer: {
+        height: 12,
+        width: 350,
+        backgroundColor: '#E0E0E0', 
+        borderRadius: 24,
+        marginLeft: 28,
+        marginTop: 30,
     },
+    progressBar: {
+        height: '100%',
+        backgroundColor: '#FCAC12', 
+        borderRadius: 24,
+    },
+
     shape3:{
         width:225,
         height:39,

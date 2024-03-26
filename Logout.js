@@ -7,7 +7,7 @@ import icon3 from './assets/logout.png'
 
 
 
-const Logout=()=>{
+const Logout=({navigation})=>{
     return(
         <View style={{backgroundColor:'#EFEFEF',height:900}}>
          <Image

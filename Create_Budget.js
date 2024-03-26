@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
-import {View,StyleSheet,Text,Image,TouchableOpacity} from 'react-native';
+import {View,StyleSheet,Text,Image,TouchableOpacity,TextInput} from 'react-native';
 import icon from './assets/arrow-left.png'
 import icon1 from './assets/arrow down 2.png'
 import { Switch } from 'react-native-switch';
+import { SelectList } from 'react-native-dropdown-select-list'
 
 
 const Create_Budget=({navigation})=>{
 
 
   const [value, setValue]=useState(true)
+  const [selected, setSelected] = React.useState("");
+
+
+  const data = [
+    {key:'1', value:'Mobiles', disabled:true},
+    {key:'2', value:'Appliances'},
+    {key:'3', value:'Cameras'},
+    {key:'4', value:'Computers', disabled:true},
+    {key:'5', value:'Vegetables'},
+    {key:'6', value:'Diary Products'},
+    {key:'7', value:'Drinks'},
+]
 
     return(
 
@@ -24,10 +37,19 @@ const Create_Budget=({navigation})=>{
         </View>
         <View>
           <Text style={styles.tex}>How much do yo want to spend?</Text>
-          <Text style={styles.tex1}>$0</Text>
+          {/* <Text style={styles.tex1}>$0</Text> */}
+          <TextInput
+          style={styles.text1}
+            placeholder='$0'
+          />
         </View>
          <View style={styles.card}>
-         <Text style={styles.input}>Category</Text>
+         {/* <Text style={styles.input}>Category</Text> */}
+         <SelectList 
+        setSelected={(val) => setSelected(val)} 
+        data={data} 
+        save="value"
+    />
 
       <TouchableOpacity>
           <Image
@@ -83,8 +105,8 @@ const styles = StyleSheet.create({
       marginLeft:18,
     },
     tex1:{
-      fontSize:45,
-      color:'#DBDBDB',
+      fontSize:10,
+      color:'#FCFCFC',
       marginTop:10,
       marginLeft:18,
     },
@@ -93,7 +115,7 @@ const styles = StyleSheet.create({
       height: 340,
       backgroundColor: '#ffffff',
       borderRadius: 25,
-      marginTop: 30
+      marginTop: 65
     },
     input: {
       height: 57,

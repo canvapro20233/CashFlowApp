@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text,Image,StyleSheet} from 'react-native'
+import {View,Text,Image,StyleSheet,TouchableOpacity} from 'react-native'
 import icon from './assets/arrow left.png'
 import icon1 from './assets/Ellipse 34.png'
 import icon2 from './assets/Ellipse 35.png'
@@ -10,20 +10,26 @@ import icon6 from './assets/wallet 3.png'
 import icon7 from './assets/Chase.png'
 import icon8 from './assets/Group.png'
 import icon9 from './assets/Bank.png'
+import { TextInput } from 'react-native-gesture-handler';
 
 
 
-const Account=()=>{
+const Account=({navigation})=>{
     return(
         <View>
             <Text style={styles.Account}>Account</Text>
+
+            <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
             <Image
                 source={icon}
                 style={{marginLeft:18,marginTop:-17}}
             />
+            </TouchableOpacity>
             <View>
                 <Text style={{textAlign:'center',color:'#91919F',marginTop:80}}>Account Balance</Text>
-                <Text style={{textAlign:'center',fontSize:45,color:'#161719',marginTop:10}}>$9400</Text>
+                <TextInput style={{textAlign:'center',fontSize:45,color:'#161719',marginTop:10}}
+                    placeholder='$0'
+                />
                 <View>
                     <Image
                         source={icon1}
@@ -89,15 +95,23 @@ const Account=()=>{
                 
                 
                 <View>
-                <Text style={{marginLeft:358,marginTop:-245}}>$400</Text>
+                <TextInput style={{marginLeft:350,marginTop:-245}}
+                    placeholder='$0'
+                />
                 
                     
                 </View>
-                <Text style={{marginLeft:350,marginTop:-170}}>$1000</Text>
+                <TextInput style={{marginLeft:350,marginTop:-170}}
+                    placeholder='$0'
+                />
                 <View>
-                <Text style={{marginLeft:350,marginTop:50}}>$6000</Text>
+                <TextInput style={{marginLeft:350,marginTop:50}}
+                    placeholder='$0'
+                />
                 <View>
-                <Text style={{marginLeft:350,marginTop:50}}>$2000</Text>
+                <TextInput style={{marginLeft:350,marginTop:50}}
+                    placeholder='$0'
+                />
 
                 </View>
 

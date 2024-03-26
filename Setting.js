@@ -1,19 +1,23 @@
 import React from 'react';
-import {StyleSheet, Text, View,Image} from 'react-native';
+import {StyleSheet, Text, View,Image,TouchableOpacity} from 'react-native';
 import icon from './assets/arrow left.png'
 import icon1 from './assets/arrow-right-2.png'
 
-const Setting=()=>{
+const Setting=({navigation})=>{
     return(
         <View style={styles.container}>
 
         <View>
 
         <Text style={styles.setting}>Settings</Text>
+
+        <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
         <Image
             source={icon}
             style={{marginLeft:16,marginTop:-18}}
         />
+        </TouchableOpacity>
+        
         </View>
      
 
@@ -31,7 +35,10 @@ const Setting=()=>{
             />
         </View>
 
+        <TouchableOpacity onPress={()=>navigation.navigate("Theme")}>
         <Text style={styles.theme}>Theme</Text>
+        </TouchableOpacity>
+
         <Text style={styles.dark}>Dark</Text>
 
         
@@ -51,8 +58,9 @@ const Setting=()=>{
                 style={{marginLeft:373,marginTop:-22}}
             />
         </View>
-
+        <TouchableOpacity onPress={()=>navigation.navigate("SettingNotification")}>
         <Text style={styles.notification}>Notification</Text>
+        </TouchableOpacity>
         <View>
             <Image
                 source={icon1}

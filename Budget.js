@@ -11,8 +11,7 @@ import icon7 from './assets/close.png'
 const Budget=({navigation})=>{
     return(
         <View style={styles.container}>
-        
-      
+
         <Image
             source={icon1}
             style={{marginLeft:18,marginTop:80}}
@@ -22,8 +21,7 @@ const Budget=({navigation})=>{
             source={icon2}
             style={{marginLeft:382,marginTop:-15}}
         />
-        
-        
+
         </View>
 
             <Text style={styles.text}>May</Text>
@@ -40,7 +38,7 @@ const Budget=({navigation})=>{
                     style={{marginLeft:38,marginTop:-30}}
                 />
             </View>
-           
+
             <Text style={{color:'#C6C6C6',fontSize:10,marginLeft:335,marginBottom:-14}}>Profile</Text>
             <Text style={{color:'#C6C6C6',fontSize:10,marginLeft:262,marginBottom:-10}}>Budget</Text>
 
@@ -50,7 +48,7 @@ const Budget=({navigation})=>{
 
       <View>
 
-      
+
                 </View>
 
                 <Text style={{color:'#C6C6C6',fontSize:10,marginLeft:37,marginTop:158}}>Home</Text>
@@ -67,26 +65,24 @@ const Budget=({navigation})=>{
               source={icon6}
               style={{marginLeft:263,marginTop:-27}}
             />
-      
-      
+
             </View>
             <Text style={{color:'#C6C6C6',fontSize:10,marginLeft:103,marginTop:-122}}>Transaction</Text>
             <View>
             <TouchableOpacity>
               <Text style={{height:59,width:59 ,borderRadius:50,backgroundColor:'#7F3DFF',marginTop:-75,marginLeft:175}}></Text>
               </TouchableOpacity>
-            
+
               <Image
                 source={icon7}
                 // style={{marginTop:-50,marginLeft:100}}
                 style={{marginTop:-58,marginLeft:190}}
               />
-              
+
             </View>
-           
-            
+
         </View>
-   
+
     )
 
 }

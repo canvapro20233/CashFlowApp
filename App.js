@@ -42,10 +42,16 @@ export default function App() {
       <stack.Screen name="DetailBudget" component={DetailBudget}></stack.Screen>
       <stack.Screen name="Remove_Budget" component={Remove_Budget}></stack.Screen>
       <stack.Screen name="Profile" component={Profile}></stack.Screen>
+      <stack.Screen name="Account" component={Account}></stack.Screen>
+      <stack.Screen name="Setting" component={Setting}></stack.Screen>
+      <stack.Screen name="Logout" component={Logout}></stack.Screen>
+      <stack.Screen name="Theme" component={Theme}></stack.Screen>
+      <stack.Screen name="SettingNotification" component={SettingNotification}></stack.Screen>
+
 
     </stack.Navigator>
 
-    </NavigationContainer>
+    </NavigationContainer>  
 
   );
 }

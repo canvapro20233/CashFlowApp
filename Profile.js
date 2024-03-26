@@ -30,38 +30,49 @@ const Profile=({navigation})=>{
                 />
 
             </View>
-            <Text style={{fontSize:25,color:'#161719',marginLeft:140,marginTop:-50}}>Iriana Saliha</Text>
+            <TextInput style={{fontSize:25,color:'#161719',marginLeft:140,marginTop:-50}}
+                placeholder="Enter name"
+            />
             <Image
                 source={icon}
                 style={{marginLeft:370,marginTop:-42}}
             />
+          
             <Text style={{height:38,width:38,borderColor:'#F6F1F1',borderRadius:10,borderWidth:2,marginLeft:363,marginTop:-30}}></Text>
             <View>
                 <Text style={styles.box}></Text>
 
                 <Text style={styles.box1}></Text>
+                <TouchableOpacity onPress={()=>navigation.navigate("Account")}>
                 <Text style={styles.text}>Account</Text>
+                </TouchableOpacity>
 
                 <Text style={styles.box2}></Text>
+                <TouchableOpacity onPress={()=>navigation.navigate("Setting")}>
                 <Text style={styles.text1}>Setting</Text>
+                </TouchableOpacity>
 
 
                 <Text style={styles.box3}></Text>
+
+                <TouchableOpacity onPress={()=>navigation.navigate("Logout")}>
                 <Text style={styles.text2}>Logout</Text>
+                </TouchableOpacity>
+
 
                 <Image
                     source={icon1}
-                    style={{marginLeft:49,marginTop:-196}}
+                    style={{marginLeft:49,marginTop:-242}}
                 />
 
                   <Image
                     source={icon2}
-                    style={{marginLeft:49,marginTop:63}}
+                    style={{marginLeft:49,marginTop:80}}
                 />
 
                 <Image
                     source={icon3}
-                    style={{marginLeft:49,marginTop:63}}
+                    style={{marginLeft:49,marginTop:72}}
                 />
 
                 <View>
@@ -69,7 +80,7 @@ const Profile=({navigation})=>{
                     <Text style={styles.box4}></Text>
                     <Image
                     source={icon4}
-                    style={{marginLeft:35,marginTop:-58}}
+                    style={{marginLeft:35,marginTop:-70}}
                 />
                 <Text style={{marginLeft:33,fontSize:10,color:'#C6C6C6',marginTop:5}}>Home</Text>
                 <Image
@@ -79,7 +90,7 @@ const Profile=({navigation})=>{
             <Text style={{marginLeft:90,fontSize:10,color:'#C6C6C6',marginTop:3}}>Transaction</Text>
             <Image
               source={icon6}
-              style={{marginLeft:349,marginTop:-42}}
+              style={{marginLeft:351,marginTop:-42}}
             />
             <Text style={{marginLeft:346,fontSize:10,color:'#7F3DFF',marginTop:3}}>Profile</Text>
             <TouchableOpacity onPress={()=>navigation.navigate("Budget")}>
@@ -94,20 +105,20 @@ const Profile=({navigation})=>{
                 </View>
                 <View>
             <TouchableOpacity>
-              <Text style={{height:60,width:60 ,borderRadius:50,backgroundColor:'#7F3DFF',marginTop:-66,marginLeft:175}}></Text>
+              <Text style={{height:60,width:60 ,borderRadius:50,backgroundColor:'#7F3DFF',marginTop:-32,marginLeft:175}}></Text>
               </TouchableOpacity>
             
               <Image
                 source={icon8}
                 // style={{marginTop:-50,marginLeft:100}}
-                style={{marginTop:-50,marginLeft:191}}
+                style={{marginTop:-48,marginLeft:191}}
               />
               
             </View>
-            <Image
+            <Image 
                 source={icon9}
                 // style={{marginTop:-50,marginLeft:100}}
-                style={{marginTop:-735,marginLeft:355}}
+                style={{marginTop:-765,marginLeft:355}}
               />
               
                 
