@@ -12,23 +12,20 @@ import Vector from "../assets/Vector.png";
 import { useState } from "react";
 import { TextInput } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { useNavigation } from "@react-navigation/native";
+import { getApiData } from "../componentSlice/addIncomeSlice";
 import { useDispatch } from "react-redux";
 
-import { getApiData } from "../componentSlice/addExpenseSlice";
-
-const Expense = ({route, navigation }) => {
+const Income = () => {
   const dispatch = useDispatch();
-
-  // const { dat }=route.params;
-  
-
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 
   const [date, setdate] = useState("select date");
+  const [de, setd] = useState();
   const [time, settime] = useState("select time");
-  const [te, sett] = useState();
 
+  const navigation = useNavigation();
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -40,7 +37,7 @@ const Expense = ({route, navigation }) => {
 
   const handleDateConfirm = (date) => {
     const r = JSON.stringify(date).slice(1, 11);
-    sett(r);
+    setd(r);
     const x = JSON.stringify(date).slice(0, 11);
     const x1 = x.split("-");
     const year = x1[0].slice(1, 5);
@@ -58,9 +55,10 @@ const Expense = ({route, navigation }) => {
   };
 
   const handleTimeConfirm = (time) => {
-    const h = te + "T" + JSON.stringify(time).slice(12, 20);
+    const h = de + "T" + JSON.stringify(time).slice(12, 20);
     setobj({
       ...obj,
+
       createdAt: h,
     });
     const t = JSON.stringify(time).slice(12, 17);
@@ -76,14 +74,7 @@ const Expense = ({route, navigation }) => {
     });
   }
 
-  const category = [
-    "Shopping",
-    "Subscription",
-    "Food",
-    "Travel",
-    "Hospital",
-    "Loan",
-  ];
+  const category = ["Sallery", "Investment", "Via friend"];
   const wallet = ["cash", "paypal", "banking"];
   const [categories, setcategory] = useState("category");
   const [wallets, setwallet] = useState("wallet");
@@ -93,16 +84,15 @@ const Expense = ({route, navigation }) => {
 
   const [obj, setobj] = useState({
     money: null,
-    type: "Expense",
+    type: "Income",
     category: "",
     description: "",
     createdAt: "",
     wallet: "",
   });
-
   return (
     <ScrollView>
-      <View style={{ backgroundColor: "#FD3C4A" }}>
+      <View style={{ backgroundColor: "#00A86B" }}>
         {/* Expense */}
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity onPress={() => navigation.navigate("Home")}>
@@ -111,15 +101,13 @@ const Expense = ({route, navigation }) => {
               style={{ marginTop: 65, marginLeft: 20 }}
             ></Image>
           </TouchableOpacity>
-
-          <Text style={[styles.Expense, { fontWeight: 500 }]}>Expense</Text>
+          <Text style={[styles.Expense]}>Income</Text>
         </View>
 
         {/* how mush */}
 
-        <Text style={styles.Howmuch}>How much?</Text>
+        <Text style={[styles.Howmuch]}>How much?</Text>
         <TextInput
-        value={obj.money}
           onChangeText={(e) =>
             setobj({
               ...obj,
@@ -127,7 +115,7 @@ const Expense = ({route, navigation }) => {
             })
           }
           placeholder="$0"
-          style={styles.money}
+          style={[styles.money]}
         ></TextInput>
 
         <View style={styles.white_box}>
@@ -143,12 +131,12 @@ const Expense = ({route, navigation }) => {
           </TouchableOpacity>
 
           {showC ? (
-            <View style={styles.showC_box}>
+            <View style={styles.showC}>
               {category.map((v) => {
                 return (
                   <View>
                     <TouchableOpacity
-                      style={styles.dotted}
+                      style={styles.showC_text}
                       onPress={() => {
                         setcategory(v);
                         setobj({
@@ -170,7 +158,6 @@ const Expense = ({route, navigation }) => {
 
           <View style={styles.border_box}>
             <TextInput
-            value={obj.description}
               onChangeText={(e) =>
                 setobj({
                   ...obj,
@@ -196,22 +183,12 @@ const Expense = ({route, navigation }) => {
           </TouchableOpacity>
 
           {showW ? (
-            <View
-              style={{
-                borderWidth: 1,
-                height: 70,
-                margin: 20,
-                borderRadius: 20,
-                flexDirection: "row",
-                flex: 1,
-                flexWrap: "wrap",
-              }}
-            >
+            <View style={styles.showC}>
               {wallet.map((v) => {
                 return (
                   <View>
                     <TouchableOpacity
-                      style={styles.dotted}
+                      style={styles.showC_text}
                       onPress={() => {
                         setwallet(v);
                         setobj({
@@ -242,7 +219,7 @@ const Expense = ({route, navigation }) => {
           {/* repeat */}
           <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
-              style={styles.date}
+              style={styles.date_picker}
               onPress={() => {
                 showDatePicker();
               }}
@@ -251,7 +228,7 @@ const Expense = ({route, navigation }) => {
             </TouchableOpacity>
 
             <TouchableOpacity
-              style={styles.date}
+              style={styles.time_picker}
               onPress={() => {
                 showTimePicker();
               }}
@@ -284,21 +261,60 @@ const Expense = ({route, navigation }) => {
   );
 };
 
-export default Expense;
+export default Income;
 
 const styles = StyleSheet.create({
+  time_picker: {
+    borderWidth: 1,
+    height: 50,
+    width: 160,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    borderColor: "#F1F1FA",
+    marginTop: 25,
+    marginLeft: 30,
+  },
+  date_picker: {
+    borderWidth: 1,
+    height: 50,
+    width: 160,
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 10,
+    borderColor: "#F1F1FA",
+    marginTop: 25,
+    marginLeft: 30,
+  },
+  showC_text: {
+    borderWidth: 1,
+    height: 50,
+    width: 100,
+    borderRadius: 30,
+    margin: 8,
+    borderStyle: "dashed",
+  },
+  showC: {
+    borderWidth: 1,
+    height: 80,
+    margin: 20,
+    borderRadius: 20,
+    flexDirection: "row",
+    flex: 1,
+    flexWrap: "wrap",
+  },
   Expense: {
     marginTop: 65,
     marginLeft: 120,
     fontSize: 20,
-
+    fontWeight: "500",
     color: "white",
   },
   money: {
     fontSize: 75,
     marginLeft: 25,
-    color: "white",
     fontWeight: "500",
+    color: "white",
   },
   Howmuch: {
     marginTop: 90,
@@ -368,33 +384,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 15,
     color: "white",
-  },
-  showC_box: {
-    borderWidth: 1,
-    height: 134,
-    margin: 20,
-    borderRadius: 20,
-    flexDirection: "row",
-    flex: 1,
-    flexWrap: "wrap",
-  },
-  dotted: {
-    borderWidth: 1,
-    height: 50,
-    width: 100,
-    borderRadius: 30,
-    margin: 8,
-    borderStyle: "dashed",
-  },
-  date: {
-    borderWidth: 1,
-    height: 50,
-    width: 160,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 10,
-    borderColor: "#F1F1FA",
-    marginTop: 25,
-    marginLeft: 30,
   },
 });
