@@ -13,11 +13,17 @@ import { useState } from "react";
 import { TextInput } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useNavigation } from "@react-navigation/native";
+import {editApiData} from "../componentSlice/EditSlice"
+
 import { getApiData } from "../componentSlice/addIncomeSlice";
 import { useDispatch } from "react-redux";
 
-const Income = () => {
+const Income = ({route, navigation }) => {
   const dispatch = useDispatch();
+
+  const { id }=route.params;
+  console.log(id,'=======');
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
 
@@ -25,7 +31,6 @@ const Income = () => {
   const [de, setd] = useState();
   const [time, settime] = useState("select time");
 
-  const navigation = useNavigation();
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -67,12 +72,20 @@ const Income = () => {
   };
 
   async function Handlechange() {
-    dispatch(getApiData(obj)).then((d) => {
- 
-      if (d.meta.requestStatus == "fulfilled") {
-        return navigation.navigate("Home");
-      }
-    });
+    if(!obj.id){
+      dispatch(getApiData()).then((d) => {
+        if (d.meta.requestStatus == "fulfilled") {
+          return navigation.navigate("Home");
+        }
+      });
+    }else{
+      dispatch(editApiData(obj)).then((d) => {
+        if (d.meta.requestStatus == "fulfilled") {
+          return navigation.navigate("Home");
+        }
+      });
+    }
+    
   }
 
   const category = ["Sallery", "Investment", "Via friend"];
@@ -83,14 +96,28 @@ const Income = () => {
   const [showW, setshowW] = useState(false);
   const [ison, setison] = useState(true);
 
-  const [obj, setobj] = useState({
-    money: null,
-    type: "Income",
-    category: "",
-    description: "",
-    createdAt: "",
-    wallet: "",
-  });
+  if(id==100){
+    var [obj, setobj] = useState({
+      money: null,
+      type: "Income",
+      category: "",
+      description: "",
+      createdAt: "",
+      wallet: "",
+    });
+  }else{
+    var [obj, setobj] = useState({
+
+      id:id.id,
+      money: id.money,
+      type: "Income",
+      category: id.category,
+      description: id.description,
+      createdAt: id.createdAt,
+      wallet: id.wallet,
+    });
+    console.log(obj,'========obj');
+  }
   return (
     <ScrollView>
       <View style={{ backgroundColor: "#00A86B" }}>

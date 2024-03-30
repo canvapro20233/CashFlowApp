@@ -25,8 +25,7 @@ const TransactionHomeSlice = createSlice({
             const d=state.allTransaction
             const data=d.filter((a)=>{
                 if(action.payload=="Today"){
-                    if(a.createdAt.slice(8,10)==dt && a.createdAt.slice(5,7)==Month && a.createdAt.slice(0,4)==year){
-                        console.log(a,'===');
+                    if(a.createdAt.slice(8,10)==dt && a.createdAt.slice(5,7)==Month && a.createdAt.slice(0,4)==year){         
                         return a
                     }
                 }

@@ -33,7 +33,7 @@ const Tabs=()=>{
             <tab.Navigator screenOptions={screenOptions} 
 
             initialRouteName="HomeScreen">
-                <tab.Screen name="AddNewAccount" component={AddNewAccount}></tab.Screen>
+                {/* <tab.Screen name="AddNewAccount" component={AddNewAccount}></tab.Screen> */}
                 <tab.Screen
                 options={{
                     tabBarIcon:({focused})=>{

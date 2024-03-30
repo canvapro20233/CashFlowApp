@@ -12,6 +12,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { getAPIData } from "../componentSlice/TransactionHomeSlice";
 import { filterWithTime } from "../componentSlice/TransactionHomeSlice";
 
+import { getApiData } from "../componentSlice/TransactionHomeSlice";
+
+import {DeleteApiData,AddApiData,EditApiData} from "../componentSlice/EditSlice"
+
+
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 

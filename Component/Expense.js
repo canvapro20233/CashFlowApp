@@ -13,17 +13,13 @@ import { useState } from "react";
 import { TextInput } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useDispatch } from "react-redux";
-
+import {editApiData} from "../componentSlice/EditSlice"
 import { getApiData } from "../componentSlice/addExpenseSlice";
 
 const Expense = ({route, navigation }) => {
   const dispatch = useDispatch();
 
-  const { id = 0 }=route.params;
-
-
-  
-   
+  const { id }=route.params;
   
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -73,11 +69,19 @@ const Expense = ({route, navigation }) => {
   };
 
   async function Handlechange() {
-    dispatch(getApiData(obj)).then((d) => {
-      if (d.meta.requestStatus == "fulfilled") {
-        return navigation.navigate("Home");
-      }
-    });
+    if(!obj.id){
+      dispatch(getApiData()).then((d) => {
+        if (d.meta.requestStatus == "fulfilled") {
+          return navigation.navigate("Home");
+        }
+      });
+    }else{
+      dispatch(editApiData(obj)).then((d) => {
+        if (d.meta.requestStatus == "fulfilled") {
+          return navigation.navigate("Home");
+        }
+      });
+    }
   }
 
   const category = [
@@ -95,15 +99,28 @@ const Expense = ({route, navigation }) => {
   const [showW, setshowW] = useState(false);
   const [ison, setison] = useState(true);
 
-  const [obj, setobj] = useState({
-    money: null,
-    type: "Expense",
-    category: "",
-    description: "",
-    createdAt: "",
-    wallet: "",
-  });
+  if(id==100){
+    var [obj, setobj] = useState({
+      money: null,
+      type: "Expense",
+      category: "",
+      description: "",
+      createdAt: "",
+      wallet: "",
+    });
+  }else{
+    var [obj, setobj] = useState({
+      id:id.id,
+      money: id.money,
+      type: "Expense",
+      category: id.category,
+      description: id.description,
+      createdAt: id.createdAt,
+      wallet: id.wallet,
+    });
+  }
 
+  
   return (
     <ScrollView>
       <View style={{ backgroundColor: "#FD3C4A" }}>
@@ -119,7 +136,7 @@ const Expense = ({route, navigation }) => {
           <Text style={[styles.Expense, { fontWeight: 500 }]}>Expense</Text>
         </View>
 
-        {/* how mush */}
+        {/* how much */}
 
         <Text style={styles.Howmuch}>How much?</Text>
         <TextInput

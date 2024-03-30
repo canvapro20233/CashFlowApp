@@ -34,42 +34,7 @@ const ExpenseTransaction = ({route,navigation}) => {
       }
     })
   },[])
-  // const RenderDelete = () => {
-  //   return (
-  //     <Modal visible={showDe} animationType="slide" transparent={true}>
-  //       <View
-  //         style={{
-  //           borderWidth: 0,
-  //           height: 150,
-  //           width: 370,
-  //           backgroundColor: "white",
-  //           borderRadius: 20,
-  //           alignItems: "center",
-  //           alignSelf: "center",
-  //           marginTop: 360,
-  //           alignContent: "center",
-  //         }}
-  //       >
-  //         <Image
-  //           style={{ marginTop: 20 }}
-  //           source={require("../assets/success.png")}
-  //         ></Image>
-  //         <Text
-  //           style={{
-  //             marginTop: 10,
-  //             fontSize: 18,
-  //             fontWeight: 700,
-  //             flexWrap: "wrap",
-  //             textAlign: "center",
-  //           }}
-  //         >
-  //           Transaction has been successfully removed
-  //         </Text>
-  //       </View>
-  //     </Modal>
-  //   );
-  // };
-
+  
   const Render = () => {
     return (
       <Modal visible={show} animationType="slide" transparent={true}>
@@ -244,7 +209,7 @@ const ExpenseTransaction = ({route,navigation}) => {
 
         {/* edit */}
         <TouchableOpacity onPress={()=> 
-        navigation.navigate("Expense",{id : {"id" : id}})} style={styles.contionue_box}>
+        navigation.navigate("Expense",{id : data})} style={styles.contionue_box}>
           <Text style={styles.continue_box_text}>Edit</Text>
         </TouchableOpacity>
       </ScrollView>

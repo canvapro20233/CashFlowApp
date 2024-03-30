@@ -14,6 +14,18 @@ export const getApiData=createAsyncThunk("call ap",async()=>{
         return response.data
 })
 
+export const editApiData=createAsyncThunk("edit api",async(obj)=>{
+
+    const response=await axios.put(`http://192.168.0.103:3000/Transaction/${obj.id}`,obj)
+        return response.data
+})
+
+export const deleteApiData=createAsyncThunk("delete api",async(id)=>{
+
+    const response=await axios.delete(`http://192.168.0.103:3000/Transaction/${id}`)
+        return response.data
+})
+
 const EditSlice=createSlice({
     name:"EditSlice",
     initialState,

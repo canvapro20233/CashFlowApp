@@ -30,14 +30,15 @@ const screens=()=>{
             <stack.Navigator screenOptions={screenOptions}>
                 <stack.Screen name="tabs" component={Tabs}></stack.Screen>
                 <stack.Screen name="AddNewAccount" component={AddNewAccount}></stack.Screen>
-                <stack.Screen name="Income" component={Income}></stack.Screen>
+                <stack.Screen name="Income" component={Income} initialParams={{ id: 100 }}></stack.Screen>
                 <stack.Screen name="BillSplitter" component={BillSplitter}></stack.Screen>
                 <stack.Screen name="HomeScreen" component={HomeScreen}></stack.Screen>
                 <stack.Screen name="IncomeTransaction" component={IncomeTransaction}></stack.Screen>
                 <stack.Screen name="Transaction" component={Transaction}></stack.Screen>
                 <stack.Screen name="Option" component={Option}></stack.Screen>
                 <stack.Screen name="ExpenseTransaction" component={ExpenseTransaction}></stack.Screen>
-                <stack.Screen name="Expense" component={Expense}></stack.Screen>
+                <stack.Screen name="Expense" component={Expense} initialParams={{ id: 100 }}
+></stack.Screen>
             </stack.Navigator>
             </NavigationContainer>
             </Provider>
