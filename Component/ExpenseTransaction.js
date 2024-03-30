@@ -14,7 +14,8 @@ import { useNavigation } from "@react-navigation/native";
 import {findData} from "../componentSlice/EditSlice"
 import { useDispatch, useSelector } from "react-redux";
 import { getApiData } from "../componentSlice/EditSlice";
-import {deleteApiData} from "../componentSlice/addExpenseSlice"
+// import {deleteApiData} from "../componentSlice/addExpenseSlice"
+import { deleteApiData } from "../componentSlice/EditSlice";
 const ExpenseTransaction = ({route,navigation}) => {
   const [show, setshow] = useState(false);
   const [showDe, setShowDe] = useState(false);

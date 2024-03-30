@@ -12,7 +12,8 @@ import {
   import * as Animatable from "react-native-animatable";
   import { useNavigation } from "@react-navigation/native";
   import {findData} from "../componentSlice/EditSlice"
-import { deleteApiData } from "../componentSlice/addExpenseSlice";
+// import { deleteApiData } from "../componentSlice/addExpenseSlice";
+import { deleteApiData } from "../componentSlice/EditSlice";
 import { getApiData } from "../componentSlice/EditSlice";
 import { useDispatch, useSelector } from "react-redux";
 

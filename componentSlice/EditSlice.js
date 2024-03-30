@@ -26,6 +26,12 @@ export const deleteApiData=createAsyncThunk("delete api",async(id)=>{
         return response.data
 })
 
+export const addApiData=createAsyncThunk("add api",async(obj)=>{
+
+    const response=await axios.post("http://192.168.0.103:3000/Transaction",obj)
+        return response.data
+})
+
 const EditSlice=createSlice({
     name:"EditSlice",
     initialState,

@@ -13,8 +13,7 @@ import { useState } from "react";
 import { TextInput } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useDispatch } from "react-redux";
-import {editApiData} from "../componentSlice/EditSlice"
-import { getApiData } from "../componentSlice/addExpenseSlice";
+import {editApiData,addApiData} from "../componentSlice/EditSlice"
 
 const Expense = ({route, navigation }) => {
   const dispatch = useDispatch();
@@ -70,7 +69,8 @@ const Expense = ({route, navigation }) => {
 
   async function Handlechange() {
     if(!obj.id){
-      dispatch(getApiData()).then((d) => {
+      console.log('hello');
+      dispatch(addApiData(obj)).then((d) => {
         if (d.meta.requestStatus == "fulfilled") {
           return navigation.navigate("Home");
         }

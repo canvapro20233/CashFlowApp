@@ -13,7 +13,7 @@ import { useState } from "react";
 import { TextInput } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useNavigation } from "@react-navigation/native";
-import {editApiData} from "../componentSlice/EditSlice"
+import {editApiData,addApiData} from "../componentSlice/EditSlice"
 
 import { getApiData } from "../componentSlice/addIncomeSlice";
 import { useDispatch } from "react-redux";
@@ -22,7 +22,6 @@ const Income = ({route, navigation }) => {
   const dispatch = useDispatch();
 
   const { id }=route.params;
-  console.log(id,'=======');
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
@@ -73,7 +72,7 @@ const Income = ({route, navigation }) => {
 
   async function Handlechange() {
     if(!obj.id){
-      dispatch(getApiData()).then((d) => {
+      dispatch(addApiData(obj)).then((d) => {
         if (d.meta.requestStatus == "fulfilled") {
           return navigation.navigate("Home");
         }
