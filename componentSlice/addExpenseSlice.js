@@ -6,8 +6,8 @@ const initialState={
     data : null
 }
 
-export const deleteApiData=createAsyncThunk("call",async(id)=>{
-    console.log(id,'==========id');
+export const deleteApiData=createAsyncThunk("expense ",async(id)=>{
+    
     const response=await axios.delete(`http://192.168.0.103:3000/Transaction/${id}`)
         return response.data
 })

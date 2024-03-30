@@ -68,6 +68,7 @@ const Income = () => {
 
   async function Handlechange() {
     dispatch(getApiData(obj)).then((d) => {
+ 
       if (d.meta.requestStatus == "fulfilled") {
         return navigation.navigate("Home");
       }

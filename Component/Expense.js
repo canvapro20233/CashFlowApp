@@ -19,7 +19,11 @@ import { getApiData } from "../componentSlice/addExpenseSlice";
 const Expense = ({route, navigation }) => {
   const dispatch = useDispatch();
 
-  // const { dat }=route.params;
+  const { id = 0 }=route.params;
+
+
+  
+   
   
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);

@@ -14,6 +14,7 @@ import { useState } from "react";
 import Tabs from "./stacks"
 import IncomeTransaction from "../Component/IncomeTransaction";
 import Income from "../Component/Income";
+import AddNewAccount from "../Component/AddNewAccount"
 
 const screens=()=>{
     const stack = createStackNavigator()
@@ -28,6 +29,7 @@ const screens=()=>{
             <NavigationContainer>
             <stack.Navigator screenOptions={screenOptions}>
                 <stack.Screen name="tabs" component={Tabs}></stack.Screen>
+                <stack.Screen name="AddNewAccount" component={AddNewAccount}></stack.Screen>
                 <stack.Screen name="Income" component={Income}></stack.Screen>
                 <stack.Screen name="BillSplitter" component={BillSplitter}></stack.Screen>
                 <stack.Screen name="HomeScreen" component={HomeScreen}></stack.Screen>

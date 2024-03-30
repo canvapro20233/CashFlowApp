@@ -14,13 +14,12 @@ import { useNavigation } from "@react-navigation/native";
 import {findData} from "../componentSlice/EditSlice"
 import { useDispatch, useSelector } from "react-redux";
 import { getApiData } from "../componentSlice/EditSlice";
-import deleteApiData from "../componentSlice/addExpenseSlice"
+import {deleteApiData} from "../componentSlice/addExpenseSlice"
 const ExpenseTransaction = ({route,navigation}) => {
   const [show, setshow] = useState(false);
   const [showDe, setShowDe] = useState(false);
 
   const { id } = route.params;
-  console.log(id,'=====id in com');
   const data=useSelector((a) => a.EditSlice.dt)
 
 
@@ -120,7 +119,9 @@ const ExpenseTransaction = ({route,navigation}) => {
             <TouchableOpacity
               onPress={() => {
                 setshow(!show);
-                return dispatch(deleteApiData(id))
+               dispatch(deleteApiData(id))
+               navigation.navigate("Transaction")
+                
               }}
               style={{
                 borderWidth: 0,
@@ -174,17 +175,17 @@ const ExpenseTransaction = ({route,navigation}) => {
             <Text
               style={styles.currency}
             >
-              {/* ${data.money} */}
+              ${data?.money}
             </Text>
             <Text
               style={styles.Buysomegrocery}
             >
-              {/* {data.description} */}
+              {data?.description}
             </Text>
             <Text
               style={styles.time}
             >
-              {/* {data.createdAt.slice(5,7)+"."+data.createdAt.slice(0,4)} */}
+              {data?.createdAt.slice(5,7)+"."+data?.createdAt.slice(0,4)}
             </Text>
           </View>
 
@@ -205,7 +206,7 @@ const ExpenseTransaction = ({route,navigation}) => {
                   Category
                 </Text>
                 <Text style={[styles.sub_text2]}>
-                  {/* {data.category} */}
+                  {data?.category}
                 </Text>
               </View>
               <View style={styles.hide_box}>
@@ -213,7 +214,7 @@ const ExpenseTransaction = ({route,navigation}) => {
                   Wallet
                 </Text>
                 <Text style={[styles.sub_text2]}>
-                  {/* {data.wallet} */}
+                  {data?.wallet}
                 </Text>
               </View>
             </View>
@@ -228,10 +229,8 @@ const ExpenseTransaction = ({route,navigation}) => {
         <View style={{ flexDirection: "colum", marginLeft: 17 }}>
           <Text style={{ fontSize: 18, color: "#91919F" }}>Description</Text>
           <Text style={{ fontSize: 17, marginTop: 10, marginRight: 5 }}>
-            jrfur fijrijg efjifjrj efdjfijfi4 jfjefu4urf j ejr jirjergr gtr nb
-            bh h gh gh g hj gyg yg yt g tg ty gftydyr gty rftv
-            iujrfi3ujri3jirjujhhh
-          </Text>
+          {data?.description}
+          </Text> 
         </View>
 
         {/* attachment */}
@@ -245,7 +244,7 @@ const ExpenseTransaction = ({route,navigation}) => {
 
         {/* edit */}
         <TouchableOpacity onPress={()=> 
-        navigation.navigate("Expense",{dat : data})} style={styles.contionue_box}>
+        navigation.navigate("Expense",{id : {"id" : id}})} style={styles.contionue_box}>
           <Text style={styles.continue_box_text}>Edit</Text>
         </TouchableOpacity>
       </ScrollView>

@@ -12,6 +12,7 @@ import ExpenseTransaction from "../Component/ExpenseTransaction";
 import IncomeTransaction from "../Component/IncomeTransaction";
 import { View,Image, TouchableOpacity, Modal } from "react-native";
 import { useState } from "react";
+import AddNewAccount from "../Component/AddNewAccount";
 
 const Tabs=()=>{
     const tab = createBottomTabNavigator()
@@ -32,7 +33,7 @@ const Tabs=()=>{
             <tab.Navigator screenOptions={screenOptions} 
 
             initialRouteName="HomeScreen">
-
+                <tab.Screen name="AddNewAccount" component={AddNewAccount}></tab.Screen>
                 <tab.Screen
                 options={{
                     tabBarIcon:({focused})=>{

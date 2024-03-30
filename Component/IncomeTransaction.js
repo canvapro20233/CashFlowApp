@@ -7,15 +7,30 @@ import {
     ScrollView,
     Modal,
   } from "react-native";
-  import { useState } from "react";
+  import { useEffect, useState } from "react";
   import { TextInput } from "react-native";
   import * as Animatable from "react-native-animatable";
   import { useNavigation } from "@react-navigation/native";
+  import {findData} from "../componentSlice/EditSlice"
+import { deleteApiData } from "../componentSlice/addExpenseSlice";
+import { getApiData } from "../componentSlice/EditSlice";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function IncomeTransaction() {
+export default function IncomeTransaction({route}) {
     const [show, setshow] = useState(false);
     const [showDe, setShowDe] = useState(false);
     const navigation = useNavigation();
+    const { id } = route.params;
+  const data=useSelector((a) => a.EditSlice.dt)
+const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(getApiData()).then((a)=>{
+
+      if(a.meta.requestStatus=="fulfilled"){
+        dispatch(findData(id))
+      }
+    })
+  },[])
     // const RenderDelete = () => {
     //   return (
     //     <Modal visible={showDe} animationType="slide" transparent={true}>
@@ -52,83 +67,81 @@ export default function IncomeTransaction() {
     //   );
     // };
   
-    // const Render = () => {
-    //   return (
-    //     <Modal visible={show} animationType="slide" transparent={true}>
-    //       <View
-    //         style={{
-    //           borderWidth: 0,
-    //           height: 200,
-    //           marginTop: 595,
-    //           backgroundColor: "white",
-    //           borderTopRightRadius: 30,
-    //           borderTopLeftRadius: 30,
-    //           alignItems: "center",
-    //         }}
-    //       >
-    //         <Text style={{ fontSize: 19, fontWeight: 700, marginTop: 20 }}>
-    //           Remove this transaction?
-    //         </Text>
-    //         <Text
-    //           style={{
-    //             fontSize: 19,
-    //             marginTop: 20,
-    //             color: "#91919F",
-    //             flexWrap: "wrap",
-    //             textAlign: "center",
-    //           }}
-    //         >
-    //           Are you sure do you wanna remove this transaction?
-    //         </Text>
-    //         <View style={{ flexDirection: "row" }}>
-    //           <TouchableOpacity
-    //             onPress={() => setshow(false)}
-    //             style={{
-    //               borderWidth: 0,
-    //               borderRadius: 10,
-    //               height: 55,
-    //               width: 160,
-    //               alignItems: "center",
-    //               justifyContent: "center",
-    //               marginTop: 20,
-    //               backgroundColor: "#EEE5FF",
-    //             }}
-    //           >
-    //             <Text style={{ color: "#7F3DFF", fontSize: 18, fontWeight: 600 }}>
-    //               No
-    //             </Text>
-    //           </TouchableOpacity>
-    //           <TouchableOpacity
-    //             onPress={() => {
-    //               setshow(!show);
-    //               setTimeout(() => {
-    //                 console.log(showDe, "ddddddddddddddd");
-    //                 setShowDe(true);
-    //                 console.log(showDe, "deeeeeeeeeeeee");
-    //               }, 5000);
-    //             }}
-    //             style={{
-    //               borderWidth: 0,
-    //               borderRadius: 10,
-    //               height: 55,
-    //               width: 160,
-    //               alignItems: "center",
-    //               justifyContent: "center",
-    //               marginLeft: 30,
-    //               marginTop: 20,
-    //               backgroundColor: "#7F3DFF",
-    //             }}
-    //           >
-    //             <Text style={{ color: "white", fontSize: 18, fontWeight: 600 }}>
-    //               Yes
-    //             </Text>
-    //             {RenderDelete()}
-    //           </TouchableOpacity>
-    //         </View>
-    //       </View>
-    //     </Modal>
-    //   );
-    // };
+    const Render = () => {
+      return (
+        <Modal visible={show} animationType="slide" transparent={true}>
+          <View
+            style={{
+              borderWidth: 0,
+              height: 200,
+              marginTop: 595,
+              backgroundColor: "white",
+              borderTopRightRadius: 30,
+              borderTopLeftRadius: 30,
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontSize: 19, fontWeight: 700, marginTop: 20 }}>
+              Remove this transaction?
+            </Text>
+            <Text
+              style={{
+                fontSize: 19,
+                marginTop: 20,
+                color: "#91919F",
+                flexWrap: "wrap",
+                textAlign: "center",
+              }}
+            >
+              Are you sure do you wanna remove this transaction?
+            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity
+                onPress={() => setshow(false)}
+                style={{
+                  borderWidth: 0,
+                  borderRadius: 10,
+                  height: 55,
+                  width: 160,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: 20,
+                  backgroundColor: "#EEE5FF",
+                }}
+              >
+                <Text style={{ color: "#7F3DFF", fontSize: 18, fontWeight: 600 }}>
+                  No
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  setshow(!show);
+                 dispatch(deleteApiData(id))
+                 navigation.navigate("Transaction")
+                  
+                }}
+                style={{
+                  borderWidth: 0,
+                  borderRadius: 10,
+                  height: 55,
+                  width: 160,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginLeft: 30,
+                  marginTop: 20,
+                  backgroundColor: "#7F3DFF",
+                }}
+              >
+                <Text style={{ color: "white", fontSize: 18, fontWeight: 600 }}>
+                  Yes
+                </Text>
+          
+              </TouchableOpacity>
+            </View>
+          </View>
+        </Modal>
+      );
+    };
   
     return (
       <View>
@@ -151,6 +164,7 @@ export default function IncomeTransaction() {
                   style={{ marginLeft: 85 }}
                   source={require("../assets/trash.png")}
                 ></Image>
+              {Render()}
               </TouchableOpacity>
             </View>
   
@@ -158,17 +172,17 @@ export default function IncomeTransaction() {
               <Text
                 style={styles.currency}
               >
-                $120
+                ${data?.money}
               </Text>
               <Text
                 style={styles.Buysomegrocery}
               >
-                Buy some grocery
+                {data?.description}
               </Text>
               <Text
                 style={styles.time}
               >
-                Saturday 4 June 2021 16:20
+                {data?.createdAt.slice(5,7)+"."+data?.createdAt.slice(0,4)}
               </Text>
             </View>
   
@@ -189,7 +203,7 @@ export default function IncomeTransaction() {
                     Category
                   </Text>
                   <Text style={[styles.sub_text2, { fontWeight: 600 }]}>
-                    Shopping
+                  {data?.category}
                   </Text>
                 </View>
                 <View style={styles.hide_box}>
@@ -197,7 +211,7 @@ export default function IncomeTransaction() {
                     Wallet
                   </Text>
                   <Text style={[styles.sub_text2, { fontWeight: 600 }]}>
-                    Paypal
+                  {data?.wallet}
                   </Text>
                 </View>
               </View>
@@ -212,9 +226,7 @@ export default function IncomeTransaction() {
           <View style={{ flexDirection: "colum", marginLeft: 17 }}>
             <Text style={{ fontSize: 18, color: "#91919F" }}>Description</Text>
             <Text style={{ fontSize: 17, marginTop: 10, marginRight: 5 }}>
-              jrfur fijrijg efjifjrj efdjfijfi4 jfjefu4urf j ejr jirjergr gtr nb
-              bh h gh gh g hj gyg yg yt g tg ty gftydyr gty rftv
-              iujrfi3ujri3jirjujhhh
+            {data?.description}
             </Text>
           </View>
   
@@ -228,7 +240,8 @@ export default function IncomeTransaction() {
           </View>
   
           {/* edit */}
-          <TouchableOpacity style={styles.contionue_box}>
+          <TouchableOpacity onPress={()=> 
+        navigation.navigate("Income",{id : {"id" : id}})} style={styles.contionue_box}>
             <Text style={styles.continue_box_text}>Edit</Text>
           </TouchableOpacity>
         </ScrollView>
