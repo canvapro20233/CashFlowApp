@@ -15,7 +15,6 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useNavigation } from "@react-navigation/native";
 import {editApiData,addApiData} from "../componentSlice/EditSlice"
 
-import { getApiData } from "../componentSlice/addIncomeSlice";
 import { useDispatch } from "react-redux";
 
 const Income = ({route, navigation }) => {
@@ -62,7 +61,6 @@ const Income = ({route, navigation }) => {
     const h = de + "T" + JSON.stringify(time).slice(12, 20);
     setobj({
       ...obj,
-
       createdAt: h,
     });
     const t = JSON.stringify(time).slice(12, 17);
