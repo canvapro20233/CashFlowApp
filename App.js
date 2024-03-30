@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './store';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-const Stack = createStackNavigator();
 
 import SplashScreen from './SplashScreen';
 import Onboarding from './Onboarding'
@@ -13,15 +13,18 @@ import LoginPage from './LoginPage'
 import ForgetPassword from './ForgetPassword'
 import ResetPass from './ResetPass'
 import Success from './Success'
-import  Setup from './Setup'
+import Setup from './Setup'
 import AddNewAccount from './AddNewAccount';
 
 export default function App() {
+
+const Stack = createStackNavigator();
+
   const screen={
     headerShown:false
   }
   return (
-
+    <Provider store={store}>
     <NavigationContainer>
     <Stack.Navigator screenOptions={screen} initialRouteName="SplashScreen">
     <Stack.Screen name="SplashScreen" component={SplashScreen} />
@@ -36,19 +39,7 @@ export default function App() {
       <Stack.Screen name="AddNewAccount" component={AddNewAccount} />
     </Stack.Navigator>
   </NavigationContainer>
-
-    // <View>
-    //   {/* < SplashScreen /> 
-    //   < Onboarding /> 
-    //   < SignUpPage />  */}
-    //   {/* < VarificationPage />  */}
-    //   {/* < LoginPage /> 
-    //   < ForgetPassword /> 
-    //   < ResetPass /> 
-    //   < Success /> 
-    //   < Setup /> 
-    //   < AddNewAccount />  */}
-    // </View>
+  </Provider>
   );
 }
 

@@ -1,42 +1,64 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} from 'react-native';
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { useFormik } from "formik";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser, clearError,userFind} from './loginslice';
 import showImg from "./assets/show.png"
 import hideImg from "./assets/hide.png"
 import icon from "./assets/arrow.png"
-import { useFormik } from "formik";
-import { REGISTRATION_SCHEMA } from "./formikValidation";
-
 
 const LoginPage = ({ navigation }) => {
-
+  const [login, setLogin] = useState([]); 
+  const dispatch = useDispatch();
+  const loading = useSelector((state) => state.login.loading);
+  const error = useSelector((state) => state.login.error);
+  const user = useSelector((state) => state.login.data)
+  const dt=useSelector((state)=> state.login.finduser)
+  
   const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
     initialValues: {
-        email: '',
-        password: '',
+      email: '',
+      password: '',
     },
-    validationSchema: REGISTRATION_SCHEMA,      
-    onSubmit: (values) => {
-        console.log(values); 
-        navigation.navigate('Success')
+    onSubmit: () => {
+      dispatch(loginUser()).then((e)=>{
+        if(e.meta.requestStatus == "fulfilled"){
+          dispatch(userFind({email : formik.values.email,password : formik.values.password}))
+  console.log(dt,'=======dt');
+  if(dt){
+    navigation.navigate("Success")
+  }
+        }
+      })
     }
-})
- 
+  })
+
+  if (error) {
+    Alert.alert(
+      "Login Failed",
+      error,
+      [
+        { text: "OK", onPress: () => { dispatch(clearError()); formik.resetForm(); } }
+      ]
+    );
+  }
+
   return (
     <View style={styles.container}>
-    <Text style={styles.text}>Login</Text>
-    <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
-       <Image style={styles.photo} source={icon}/>
-    </TouchableOpacity>
-    
-    <TextInput 
-       value={formik.values.email}
-       placeholder='Email'
-       onChangeText={formik.handleChange('email')}
-       style={[styles.input, formik.errors.email ? styles.errorBorder : '']}
-   />
-     {formik.errors.email && <Text style={styles.errorMessage}>{formik.errors.email}</Text>}
+      <Text style={styles.text}>Login</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
+        <Image style={styles.photo} source={icon}/>
+      </TouchableOpacity>
+
+      <TextInput 
+        value={formik.values.email}
+        placeholder='Email'
+        onChangeText={formik.handleChange('email')}
+        style={[styles.input, formik.errors.email ? styles.errorBorder : '']}
+      />
+      {formik.errors.email && <Text style={styles.errorMessage}>{formik.errors.email}</Text>}
 
       <View style={styles.passwordContainer}>
         <TextInput
@@ -52,26 +74,26 @@ const LoginPage = ({ navigation }) => {
       </View>
       {formik.errors.password && <Text style={styles.errorMessage}>{formik.errors.password}</Text>}
 
-     <TouchableOpacity style={styles.signup} onPress={formik.handleSubmit}>
-          <Text style={styles.signuptext}>Login</Text>
+      <TouchableOpacity style={styles.signup} onPress={formik.handleSubmit} disabled={loading}>
+        <Text style={styles.signuptext}>{loading ? 'Logging in...' : 'Login'}</Text>
+      </TouchableOpacity>
+
+      <View>
+        <TouchableOpacity>
+          <Text style={styles.forget} onPress={() => navigation.navigate('ForgetPassword')}>Forgot Password?</Text>
         </TouchableOpacity>
-        <View>
-          <TouchableOpacity>
-            <Text style={styles.forget} onPress={() => navigation.navigate('ForgetPassword')}>Forgot Password?</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.login}>
+      </View>
+
+      <View style={styles.login}>
         <Text style={styles.text2}>Don’t have an account yet?</Text>
         <TouchableOpacity>
           <Text style={styles.logint} onPress={() => navigation.navigate('SignUp')}>Sign Up</Text>
         </TouchableOpacity>
-        </View>
+      </View>
     </View>
   );
 }
-
-export default LoginPage;
-
+export default LoginPage
 const styles = StyleSheet.create({
   photo:{
     marginLeft:16,

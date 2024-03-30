@@ -1,45 +1,51 @@
-import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, Alert} from 'react-native';
+import { useFormik } from "formik";
+import { REGISTRATION_SCHEMA } from "./formikValidation";
+import CheckBox from 'react-native-check-box';
+import { useDispatch, useSelector } from 'react-redux';
 import icon from "./assets/arrow.png"
 import googletImg from "./assets/google.png"
 import showImg from "./assets/show.png"
 import hideImg from "./assets/hide.png"
-import { useFormik } from "formik";
-import { REGISTRATION_SCHEMA } from "./formikValidation";
-import CheckBox from 'react-native-check-box';
+import { useradd } from './Slice';
 
 const SignUpPage = ({ navigation }) => {
   const [isChecked, setChecked] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
+
+  const dispatch = useDispatch()
  
   const formik = useFormik({
     initialValues: {
-        Name: '',
+        name: '',
         email: '',
         password: ''
     },
     validationSchema: REGISTRATION_SCHEMA,      
-    onSubmit: (values) => {
-        console.log(values); 
-        navigation.navigate('Varification'); 
-    }
-})
+    onSubmit: async(values) => {
+        dispatch(useradd(values)).then(data => {
+            console.log("===data===");
+            console.log(data);
+        })
+      navigation.navigate('Varification')
+  }
+});
 
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Sign Up</Text>
-      <TouchableOpacity  onPress={() => navigation.navigate('Onboarding')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Onboarding')}>
        <Image style={styles.photo} source={icon}/>
     </TouchableOpacity>
 
       <TextInput
-       value={formik.values.Name}
+       value={formik.values.name}
        placeholder='Name'
-       onChangeText={formik.handleChange('Name')}
-       style={[styles.input, formik.errors.Name ? styles.errorBorder : '']}
+       onChangeText={formik.handleChange('name')}
+       style={[styles.input, formik.errors.name ? styles.errorBorder : '']}
       />
-      {formik.errors.Name && <Text style={styles.errorMessage}>{formik.errors.Name}</Text>}
+      {formik.errors.name && <Text style={styles.errorMessage}>{formik.errors.name}</Text>}
 
       <TextInput 
        value={formik.values.email}
@@ -91,7 +97,7 @@ const SignUpPage = ({ navigation }) => {
 
         <View style={styles.login}>
         <Text style={styles.text2}>Already have an account?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Text style={styles.logint}>Login</Text>
         </TouchableOpacity>
         </View>

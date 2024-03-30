@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": "04d9",
+      "name": "Jisha",
+      "email": "Jisha@mail.com",
+      "password": "hellllll"
+    },
+    {
+      "id": "f16e",
+      "name": "Plk",
+      "email": "Plk3@mwil.com",
+      "password": "12345678"
+    },
+    {
+      "id": "a36c",
+      "name": "Palak",
+      "email": "Plk@plk.com",
+      "password": "plkgbchgdvb"
+    },
+    {
+      "id": "ca57",
+      "name": "Cashflow",
+      "email": "Cashflow@mail.com",
+      "password": "12345678"
+    },
+    {
+      "id": "0f22",
+      "name": "Hetvi",
+      "email": "hetvi@gmail.com",
+      "password": "12345678910"
+    },
+    {
+      "id": "ba3e",
+      "name": "Hello",
+      "email": "Hello@gmail.com",
+      "password": "hetvi12345"
+    },
+    {
+      "id": "e4af",
+      "name": "Adtech",
+      "email": "adtech@mail.com",
+      "password": "adtech0101"
+    }
+  ]
+}

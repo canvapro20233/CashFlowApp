@@ -1,11 +1,34 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image, TextInput, Alert } from 'react-native';
 import icon from './assets/arrow.png';
 
 const VarificationPage = ({ navigation }) => {
   const [timeLeft, setTimeLeft] = useState(300); 
-  const [verificationCode, setVerificationCode] = useState("______"); 
-  const [isResendDisabled, setIsResendDisabled] = useState(false);
+  const [otp, setOtp] = useState(''); 
+	const [userInput, setUserInput] = useState(''); 
+	const [isValid, setIsValid] = useState(null); 
+  const [showOtpBox, setShowOtpBox] = useState(false); 
+
+  const generateOtp = () => { 
+		let generatedOtp = ''; 
+		const characters = '0123456789'; 
+
+		for (let i = 0; i < 6; i++) { 
+			generatedOtp += characters.charAt(Math.floor(Math.random() * characters.length)); 
+		} 
+		setOtp(generatedOtp); 
+		setIsValid(null); 
+		setShowOtpBox(true); 
+	}; 
+
+	const validateOtp = () => { 
+		if (userInput === otp) { 
+			setIsValid(true); 
+		} else { 
+			setIsValid(false); 
+      Alert.alert('Invalid OTP', 'Please enter a valid OTP.', [{ text: 'OK' }]);
+		} 
+	}; 
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,15 +46,11 @@ const VarificationPage = ({ navigation }) => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleResendCode = () => {
-    setVerificationCode(generateNewVerificationCode());
-    setTimeLeft(300); 
-    setIsResendDisabled(true); 
-  };
-
-  const generateNewVerificationCode = () => {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-  };
+  useEffect(() => {
+    if (isValid === true) {
+      navigation.navigate('Success'); 
+    }
+  }, [isValid]);
 
   return (
     <View>
@@ -41,32 +60,73 @@ const VarificationPage = ({ navigation }) => {
       </TouchableOpacity>
       <Text style={styles.text1}>Enter your</Text>
       <Text style={styles.text2}>Verification Code</Text>
-      <Text style={styles.text3}>{verificationCode}</Text>
-      <Text style={styles.text4}>{formatTimeLeft(timeLeft)}</Text>
-      <Text style={styles.text5}>We sent a verification code to your email:</Text>
-      <Text style={styles.text6}>brajaoma*****@gmail.com.</Text>
-      <Text style={styles.text7}>You can check your inbox.</Text>
 
-      <TouchableOpacity onPress={handleResendCode} disabled={isResendDisabled}>
-        <Text style={[styles.text8, isResendDisabled && { color: '#ccc' }]}>I didn’t receive the code? Send again</Text>
-      </TouchableOpacity>
+				<TouchableOpacity style={styles.button} onPress={generateOtp}> 
+					<Text style={styles.buttonText}>Generate OTP</Text> 
+				</TouchableOpacity> 
+				{showOtpBox && ( 
+					<View style={styles.otpBox}> 
+						<Text style={styles.otp}>{otp}</Text> 
+					</View> 
+				)} 
+      
+      <TextInput 
+					style={styles.input} 
+					placeholder="Enter OTP"
+					value={userInput} 
+					onChangeText={setUserInput} 
+				/>
 
-      <TouchableOpacity style={styles.signup} onPress={()=>navigation.navigate("Success")}>
+      <TouchableOpacity style={styles.signup} onPress={validateOtp}>
         <Text style={styles.signuptext}>Verify</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-const formatTimeLeft = (timeLeft) => {
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
-  return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-};
-
 export default VarificationPage;
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ 
+  button: { 
+    height:55,
+    width:173,
+    borderRadius:18,
+    backgroundColor:'#7F3DFF',
+    marginLeft:18,
+    paddingHorizontal: 20, 
+		paddingVertical: 13, 
+	},
+  buttonText: { 
+		color: '#FFF', 
+		fontSize: 18, 
+	}, 
+  input: { 
+    height: 50,
+    borderRadius:5,
+    borderColor: '#7F3DFF',
+    backgroundColor: 'white',
+    borderWidth: 1,
+    marginTop: 5,
+    marginLeft: 18,
+    padding: 8,
+    marginLeft: 18,
+    width: '70%',
+    fontWeight: '900',
+    color: '#6C6C6C'
+	}, 
+	otpBox: { 
+    marginLeft: 18,
+		marginTop: 5, 
+    width: '70%',
+		backgroundColor: 'white', 
+		borderRadius: 5, 
+		padding: 10, 
+		borderWidth: 1, 
+		borderColor: 'grey', 
+	}, 
+	otp: { 
+		fontSize: 24, 
+	}, 
   photo: {
     marginLeft: 16,
     marginTop: -23,

@@ -3,13 +3,44 @@ import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, CheckBox} f
 import showImg from "./assets/show.png"
 import hideImg from "./assets/hide.png"
 import icon from "./assets/arrow.png"
+import { useDispatch } from 'react-redux';
+import { newpassword } from './forgetslice';
 
-const ResetPass = ({ navigation }) => {
+const ResetPass = ({ route,navigation }) => {
 
+
+  const dispatch = useDispatch()
   const [showPassword, setShowPassword] = useState(false);
   const [rshowPassword, setRshowPassword] = useState(false);
+  const [password, setPassword] = useState({
+    newpassword: '',
+    ResetPassword: ''
+  })
+  const handleChange = () => {
+    if(password.ResetPassword==password.newpassword){
+      setData({
+        ...data,
+        "password" : password.newpassword
+      })
+    
+    dispatch(newpassword(data)).then((a)=>{
+      console.log(a.meta.requestStatus,'========res');
+      if(a.meta.requestStatus == "fulfilled"){
+        navigation.navigate('Login')
+      }
+    })
+    }
+  }
 
- 
+ const {id}=route.params;
+
+ const [data, setData] = useState({
+      "id": id.id,
+      "name": id.name,
+      "email": id.email,
+      "password": ""
+ })
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Reset Password</Text>
@@ -19,6 +50,13 @@ const ResetPass = ({ navigation }) => {
 
       <View style={styles.passwordContainer}>
         <TextInput style={styles.passwordInput}
+        value={password.newpassword}
+        onChangeText={((e) => {
+          setPassword({
+            ...password,
+            newpassword: e
+          })
+        })}
           placeholder=' New Password'
           secureTextEntry={!showPassword}
         />
@@ -29,6 +67,13 @@ const ResetPass = ({ navigation }) => {
 
       <View style={styles.passwordContainer1}>
       <TextInput style={styles.passwordInput}
+      value={password.ResetPassword}
+      onChangeText={((e) => {
+        setPassword({
+          ...password,
+          ResetPassword: e
+        })
+      })}
       placeholder='Retype new password'
       secureTextEntry={!rshowPassword}
       />
@@ -37,7 +82,7 @@ const ResetPass = ({ navigation }) => {
       </TouchableOpacity>
       </View>
 
-     <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('Login')}>
+     <TouchableOpacity style={styles.signup} onPress={handleChange}>
           <Text style={styles.signuptext}>Continue</Text>
         </TouchableOpacity>
     </View>
