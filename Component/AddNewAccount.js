@@ -30,52 +30,27 @@ const AddNewAccount = ({navigation}) => {
 />
       <Text style={styles.bank}>Bank</Text>
 
-      <View style={styles.buttonContainer}>
-      <TouchableOpacity
-            onPress={() => handleButtonPress('chase')}
-            style={clickedId === 'chase' ? styles.buttonActive : styles.button}>
-            <Image style={styles.btn} source={require("../assets/Bank.png")}/>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-            onPress={() => handleButtonPress('paypal')}
-            style={clickedId === 'paypal' ? styles.buttonActive1 : styles.button1}>
-            <Image style={styles.btn} source={require("../assets/Bank.png")}/>
+        <View style={{flex:3,flexDirection:"row",flexWrap:"wrap"}}>
+          <TouchableOpacity onPress={()=>setClickedId("chase")} style={[styles.box1,clickedId === 'chase' ? styles.selected_box : styles.box1]}>
+          <Image source={require("../assets/Chase.png")}/>
           </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => handleButtonPress('citi')}
-            style={clickedId === 'citi' ? styles.buttonActive1 : styles.button1}>
-            <Image style={styles.btn} source={require("../assets/Group.png")}/>
+          <TouchableOpacity onPress={()=>setClickedId("paypal")} style={[styles.box1,clickedId === 'paypal' ? styles.selected_box : styles.box1]}>
+          <Image source={require("../assets/Paypal.png")}/>
           </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => handleButtonPress('america')}
-            style={clickedId === 'america' ? styles.buttonActive1 : styles.button1}>
-            <Image style={styles.btn} source={require("../assets/Bank.png")}/>
+          <TouchableOpacity onPress={()=>setClickedId("group")} style={[styles.box1,clickedId === 'group' ? styles.selected_box : styles.box1]}>
+          <Image source={require("../assets/Group.png")}/>
           </TouchableOpacity>
-      </View>
-
-      <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => handleButtonPress('jago')}
-            style={clickedId === 'jago' ? styles.buttonActive : styles.button}>
-            <Image style={styles.btn} source={require("../assets/Bank.png")}/>
+          <TouchableOpacity onPress={()=>setClickedId("america")} style={[styles.box1,clickedId === 'america' ? styles.selected_box : styles.box1]}>
+          <Image source={require("../assets/America.png")}/>
           </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => handleButtonPress('mandiri')}
-            style={clickedId === 'mandiri' ? styles.buttonActive2 : styles.button2}>
-            <Image style={styles.btn} source={require("../assets/Bank.png")}/>
+          <TouchableOpacity onPress={()=>setClickedId("jago")} style={[styles.box1,clickedId === 'jago' ? styles.selected_box : styles.box1]}>
+          <Image source={require("../assets/Jago.png")}/>
           </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => handleButtonPress('BCA')}
-            style={clickedId === 'BCA' ? styles.buttonActive2 : styles.button2}>
-            <Image style={styles.btn} source={require("../assets/Bank.png")}/>
-          </TouchableOpacity>
+          <TouchableOpacity onPress={()=>setClickedId("bca")} style={[styles.box1,clickedId === "bca" ? styles.selected_box : styles.box1]}>
+          <Image source={require("../assets/BCA.png")}/>
+          </TouchableOpacity> 
         </View>
-      <TouchableOpacity style={styles.signup}>
+      <TouchableOpacity onPress={()=>navigation.navigate("screen")} style={styles.signup}>
           <Text style={styles.signuptext}>Continue</Text>
       </TouchableOpacity>
     </View>
@@ -86,6 +61,14 @@ const AddNewAccount = ({navigation}) => {
 export default AddNewAccount;
 
 const styles = StyleSheet.create({
+  selected_box:{
+    backgroundColor:"#EEE5FF",
+    borderColor:"#7F3DFF"
+  },
+  box1:{
+    borderWidth:1,width:110,height:50,marginLeft:20,marginTop:20,borderRadius:10,alignItems:"center",justifyContent:"center",backgroundColor:"#F1F1FA",
+    borderColor:"#F1F1FA"
+  },
   container:{
     backgroundColor: '#7d3dff',
     height:900,

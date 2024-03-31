@@ -1,3 +1,3 @@
 import screens from "./Navigation/Screens"
-
-export default screens
+import Ragestration from "./Navigation/registration"
+export default Ragestration

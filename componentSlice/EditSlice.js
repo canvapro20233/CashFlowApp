@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { addUserAPI } from "../APIs/Transaction";
 const initialState={
     loading :false,
     data : null,
@@ -30,6 +31,15 @@ export const addApiData=createAsyncThunk("add api",async(obj)=>{
 
     const response=await axios.post("http://192.168.0.103:3000/Transaction",obj)
         return response.data
+})
+
+export const useradd = createAsyncThunk("counter/useradd",async(data)=> {
+    try{
+        const response = await addUserAPI(data)
+        console.log(response.data);
+    }catch(error){
+        console.log("error error");
+    }
 })
 
 const EditSlice=createSlice({
