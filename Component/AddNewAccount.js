@@ -1,13 +1,28 @@
 import { useState } from 'react';
 import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity} from 'react-native';
-
+import { newAccount } from '../componentSlice/newAccountSlice';
+import { FindData } from '../componentSlice/newAccountSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const AddNewAccount = ({navigation}) => {
-
-  const [clickedId, setClickedId] = useState(null)
-  const handleButtonPress = (id) => {
-    setClickedId(id);
-  };
+  const dispatch=useDispatch()
+  const data=useSelector((state)=>state.NewAccountSlice.obj)
+  const [obj,setobj]=useState({
+      "Bankname" : "",
+      "Phonenumber" : '',
+      "Accountnumber" : '',
+      "IFSC" : ""
+  })
+  function Handlechange() {
+    dispatch(newAccount()).then((a)=>{
+      if(a.meta.requestStatus == "fulfilled"){
+        dispatch(FindData(obj))
+        if(data){
+          navigation.navigate("screen")
+        }
+      }
+    })
+  }
 
   return (
     <View style={styles.container}>
@@ -20,37 +35,73 @@ const AddNewAccount = ({navigation}) => {
 
       <View style={styles.card}>
       <TextInput style={styles.input}
+      onChangeText={(e)=>{
+        setobj({
+          ...obj,
+          "Phonenumber" : e
+        })
+      }}
        placeholder='Enter phone number'
       />
       <TextInput style={styles.input1}
+      onChangeText={(e)=>{
+        setobj({
+          ...obj,
+          "Accountnumber" : e
+        })
+      }}
        placeholder='Enter Account number'/>
       <TextInput style={styles.input1}
+      onChangeText={(e)=>{
+        setobj({
+          ...obj,
+          "IFSC" : e
+        })
+      }}
        placeholder='Enter IFSC code'
       secureTextEntry
 />
       <Text style={styles.bank}>Bank</Text>
 
         <View style={{flex:3,flexDirection:"row",flexWrap:"wrap"}}>
-          <TouchableOpacity onPress={()=>setClickedId("chase")} style={[styles.box1,clickedId === 'chase' ? styles.selected_box : styles.box1]}>
+          <TouchableOpacity onPress={()=>setobj({
+            ...obj,
+            Bankname : "chase"
+          })} style={[styles.box1,obj.Bankname === 'chase' ? styles.selected_box : styles.box1]}>
           <Image source={require("../assets/Chase.png")}/>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>setClickedId("paypal")} style={[styles.box1,clickedId === 'paypal' ? styles.selected_box : styles.box1]}>
+          <TouchableOpacity onPress={()=>setobj({
+            ...obj,
+            Bankname : "paypal"
+          })} style={[styles.box1,obj.Bankname === 'paypal' ? styles.selected_box : styles.box1]}>
           <Image source={require("../assets/Paypal.png")}/>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>setClickedId("group")} style={[styles.box1,clickedId === 'group' ? styles.selected_box : styles.box1]}>
+          <TouchableOpacity onPress={()=>setobj({
+            ...obj,
+            Bankname : "group"
+          })} style={[styles.box1,obj.Bankname === 'group' ? styles.selected_box : styles.box1]}>
           <Image source={require("../assets/Group.png")}/>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>setClickedId("america")} style={[styles.box1,clickedId === 'america' ? styles.selected_box : styles.box1]}>
+          <TouchableOpacity onPress={()=>setobj({
+            ...obj,
+            Bankname : "america"
+          })} style={[styles.box1,obj.Bankname === 'america' ? styles.selected_box : styles.box1]}>
           <Image source={require("../assets/America.png")}/>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>setClickedId("jago")} style={[styles.box1,clickedId === 'jago' ? styles.selected_box : styles.box1]}>
+          <TouchableOpacity onPress={()=>setobj({
+            ...obj,
+            Bankname : "jago"
+          })} style={[styles.box1,obj.Bankname === 'jago' ? styles.selected_box : styles.box1]}>
           <Image source={require("../assets/Jago.png")}/>
           </TouchableOpacity>
-          <TouchableOpacity onPress={()=>setClickedId("bca")} style={[styles.box1,clickedId === "bca" ? styles.selected_box : styles.box1]}>
+          <TouchableOpacity onPress={()=>setobj({
+            ...obj,
+            Bankname : "bca"
+          })} style={[styles.box1,obj.Bankname === "bca" ? styles.selected_box : styles.box1]}>
           <Image source={require("../assets/BCA.png")}/>
           </TouchableOpacity> 
         </View>
-      <TouchableOpacity onPress={()=>navigation.navigate("screen")} style={styles.signup}>
+      <TouchableOpacity onPress={Handlechange} style={styles.signup}>
           <Text style={styles.signuptext}>Continue</Text>
       </TouchableOpacity>
     </View>
@@ -148,60 +199,5 @@ signup:{
    signuptext:{
      color:"white",
      fontWeight: 'bold'
-   },
-   buttonContainer: {
-    flexDirection: 'row',
-    marginTop: 10,
-  },
-  button:{
-    backgroundColor: '#F1F1FA', 
-    borderRadius:10,
-    paddingHorizontal:26,
-    marginLeft:15,
-    paddingVertical:10
-  },
-  button1:
-  {backgroundColor: '#F1F1FA', 
-    borderRadius:10,
-    paddingHorizontal:26,
-    marginLeft:5,
-    paddingVertical:10
-  },
-  button2:
-  {backgroundColor: '#F1F1FA', 
-    borderRadius:10,
-    paddingHorizontal:30,
-    marginLeft:14,
-    paddingVertical:10
-  },
-  buttonActive: 
-  {
-    backgroundColor: '#EEE5FF',
-    borderColor: '#7F3DFF',
-    borderRadius:10,
-    paddingHorizontal:26,
-    marginLeft:15,
-    paddingVertical:10,
-    borderWidth: 1,
-  },
-  buttonActive1: 
-  {
-    backgroundColor: '#EEE5FF',
-    borderColor: '#7F3DFF',
-    borderRadius:10,
-    paddingHorizontal:26,
-    marginLeft:5,
-    paddingVertical:10,
-    borderWidth: 1,
-  },
-  buttonActive2: 
-  {
-    backgroundColor: '#EEE5FF',
-    borderColor: '#7F3DFF',
-    borderRadius:10,
-    paddingHorizontal:26,
-    marginLeft:20,
-    paddingVertical:10,
-    borderWidth: 1,
-  },
+   }
 });

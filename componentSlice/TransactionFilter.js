@@ -63,7 +63,26 @@ const TransactionFilter = createSlice({
                 state.allTransaction=[dat]
             }
             if(action.payload=="Newest"){
-                const newestTime = new Date(Math.max.apply(state.allTransaction.date))
+                let date=[]
+                 date=state.allTransaction.map((a)=>{
+                    return new Date(a.createdAt)
+                })
+                const neww=new Date(Math.max(...date))
+                let text = neww.toString();
+                console.log(text);
+
+            }
+            if(action.payload=="Oldest"){
+                let date=[]
+                 date=state.allTransaction.map((a)=>{
+                    return new Date(a.createdAt)
+                })
+                const neww=new Date(Math.min(...date))
+                neww.toString()
+                console.log(neww.slice(0,17));
+                const data=state.allTransaction((a)=>{
+            
+                })
             }
         },
         sortByCate:(state,action)=>{

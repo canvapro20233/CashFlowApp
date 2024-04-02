@@ -6,9 +6,7 @@ const Transaction = () => {
     axios.get("http://192.168.0.103:3000/Transaction")
   )
 }
-
 export default Transaction
-
 
 export const addUserAPI=(data)=>{
   return(
@@ -23,4 +21,10 @@ export function loginAPI() {
 export function resetpass(data) {
     
   return axios.put(`http://192.168.0.103:3000/users/${data.id}`,data);
+}
+
+export const BankApi = () => {
+  return (
+    axios.get("http://192.168.0.103:3000/Accounts")
+  )
 }

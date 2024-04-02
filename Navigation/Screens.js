@@ -22,7 +22,6 @@ const Screens=()=>{
     const screenOptions={
         tabBarShowLabel : false,
         headerShown : false,
-        
     }
     return(
         <Provider store={store}>

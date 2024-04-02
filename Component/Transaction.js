@@ -111,8 +111,7 @@ const Transaction = ({navigation}) => {
                     <Text style={{fontSize:16, color:sort=="Lowest" ? "#7F3DFF" : "black", fontWeight:500,marginTop:10,marginLeft:22}}>Lowest</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity 
-           onPress={()=>setsort("Newest")} style={{borderWidth:1,borderColor:sort=="Newest" ? "#EEE5FF" : "#E3E5E5" ,width:105,borderRadius:50,height:45,backgroundColor: sort=="Newest" ? "#EEE5FF" : "white",marginLeft:15}}>
+                <TouchableOpacity onPress={()=>setsort("Newest")} style={{borderWidth:1,borderColor:sort=="Newest" ? "#EEE5FF" : "#E3E5E5" ,width:105,borderRadius:50,height:45,backgroundColor: sort=="Newest" ? "#EEE5FF" : "white",marginLeft:15}}>
                     <Text style={{fontSize:16,color:sort=="Newest" ? "#7F3DFF" : "black", fontWeight:500,marginTop:10,marginLeft:25}}>Newest</Text>
                 </TouchableOpacity>
 

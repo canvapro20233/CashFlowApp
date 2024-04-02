@@ -38,6 +38,9 @@ const Expense = ({route, navigation }) => {
   };
 
   const handleDateConfirm = (date) => {
+    console.log(date,'===date');
+    let t=date.toString()
+  
     const r = JSON.stringify(date).slice(1, 11);
     sett(r);
     const x = JSON.stringify(date).slice(0, 11);
@@ -101,7 +104,7 @@ const Expense = ({route, navigation }) => {
 
   if(id==100){
     var [obj, setobj] = useState({
-      money: null,
+      money: 0,
       type: "Expense",
       category: "",
       description: "",

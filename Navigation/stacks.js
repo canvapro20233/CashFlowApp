@@ -32,7 +32,7 @@ const Tabs=()=>{
    
             <tab.Navigator screenOptions={screenOptions} 
 
-            initialRouteName="HomeScreen">
+            initialRouteName="Home">
                 {/* <tab.Screen name="AddNewAccount" component={AddNewAccount}></tab.Screen> */}
                 <tab.Screen
                 options={{

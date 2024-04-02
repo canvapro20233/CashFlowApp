@@ -5,6 +5,7 @@ import TransactionFilterReducer from "./componentSlice/TransactionFilter";
 import EditeSliceReducer from "./componentSlice/EditSlice"
 import loginReducer from './componentSlice/loginslice';
 import forgetsliceReducer from "./componentSlice/forgetslice";
+import newAccountReducer from "./componentSlice/newAccountSlice";
 const store=configureStore({
     reducer:{
         BillSplitter : BillReducer,
@@ -12,7 +13,8 @@ const store=configureStore({
         transactionFilter : TransactionFilterReducer,
         EditSlice : EditeSliceReducer,
         login: loginReducer,
-        forget : forgetsliceReducer
+        forget : forgetsliceReducer,
+        NewAccountSlice : newAccountReducer
     }
 })
 export default store

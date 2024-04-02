@@ -9,7 +9,7 @@ const Onboarding = ({ navigation }) => {
         <Text style={styles.head}>Planning ahead</Text>
         <Text style={styles.text}>Setup Your budget for each category</Text>
         <Text style={styles.text1}>so you're in control</Text>
-        <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('SignUp')}>
+        <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate('SignUpPage')}>
         <Text style={styles.signuptext}> Sign Up </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.loginBtn} onPress={() => navigation.navigate('LoginPage')}>

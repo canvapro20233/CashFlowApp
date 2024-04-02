@@ -10,7 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAPIData } from "../componentSlice/TransactionHomeSlice";
-import { filterWithTime } from "../componentSlice/TransactionHomeSlice";
+import { filterWithTime,transaction } from "../componentSlice/TransactionHomeSlice";
 
 import { getApiData } from "../componentSlice/TransactionHomeSlice";
 
@@ -19,14 +19,21 @@ import {DeleteApiData,AddApiData,EditApiData} from "../componentSlice/EditSlice"
 
 const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
-
+const balance=useSelector((state)=>state.NewAccountSlice.obj)
   // useEffect(()=>{
   //   dispatch(filterWithTime(ison))
   // },[ison])
 
-  const data = useSelector((state) => state.Transaction.allTransaction);
+  const data = useSelector((state) => state.Transaction.allTransaction);  
+  const income = useSelector((state) => state.Transaction.income);
+  const expense = useSelector((state) => state.Transaction.expense);
+
   useEffect(() => {
-    dispatch(getAPIData());
+    dispatch(getAPIData()).then((a)=>{
+      if(a.meta.requestStatus == "fulfilled"){
+        dispatch(transaction())
+      }
+    })
   }, []);
   const [ison, setison] = useState("Today");
 
@@ -67,7 +74,7 @@ const HomeScreen = ({ navigation }) => {
               Account Balance
             </Text>
             <Text style={{ fontSize: 44, fontWeight: 700, marginLeft: 21 }}>
-              $9400
+              {/* ${balance.Balance} */}
             </Text>
           </View>
 
@@ -82,7 +89,7 @@ const HomeScreen = ({ navigation }) => {
               </View>
               <View>
                 <Text style={styles.income_expense_Text1}>Income</Text>
-                <Text style={styles.income_expense_Text2}>$5000</Text>
+                <Text style={styles.income_expense_Text2}>${income}</Text>
               </View>
             </View>
             <View style={styles.expens}>
@@ -94,7 +101,7 @@ const HomeScreen = ({ navigation }) => {
               </View>
               <View>
                 <Text style={styles.income_expense_Text1}>Expenses</Text>
-                <Text style={styles.income_expense_Text2}>$1200</Text>
+                <Text style={styles.income_expense_Text2}>${expense}</Text>
               </View>
             </View>
           </View>
