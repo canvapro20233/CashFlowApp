@@ -17,7 +17,7 @@ import { filterWithTime,incomeExpense,sortData,sortByCate} from "../componentSli
 const Transaction = ({navigation}) => {
   const [showC, setshowC] = useState(false);
   const [categories, setcategory] = useState({
-    "v" : ''
+    "v" : null
   });
 
   const [a,seta]=useState(false)
@@ -55,11 +55,11 @@ const Transaction = ({navigation}) => {
       dispatch(getAPIData())
     },[cat])
 
-    useEffect(()=>{
-      dispatch(sortByCate(categories))
+    const Handlechange=(()=>{
       dispatch(incomeExpense(IncomeExpense))
       dispatch(sortData(sort))
-    },[a])
+      dispatch(sortByCate(categories))
+    })
 
     const Render=()=>{
       return(
@@ -79,6 +79,11 @@ const Transaction = ({navigation}) => {
                   dispatch(getAPIData())
                   settime("all")
                   setshow(false)
+                  setcategory({
+                    "v" : null
+                  })
+                  setIncomeExpense(false)
+                  setsort(false)
                 }} style={{borderWidth:0,width:70,borderRadius:50,height:30,backgroundColor:"#EEE5FF",marginLeft:155}}>
                     <Text style={{fontSize:16,color:"#7F3DFF", fontWeight:500,marginTop:4,marginLeft:15}}>Reset</Text>
                 </TouchableOpacity>
@@ -181,6 +186,7 @@ const Transaction = ({navigation}) => {
 
             <TouchableOpacity onPress={()=> {
               seta(!a)
+              Handlechange()
               setshow(false)}} style={styles.contionue_box}>
             <Text style={styles.continue_box_text}>Apply</Text>
           </TouchableOpacity>
@@ -267,6 +273,7 @@ const Transaction = ({navigation}) => {
               { item.category=="Travel" ? <Image source={require('../assets/restaurant.png')} style={{marginTop:14,marginLeft:17}}></Image> : null}
               { item.category=="Loan" ? <Image source={require('../assets/recurringbill.png')} style={{marginTop:14,marginLeft:17}}></Image> : null}
               { item.category=="Investment" ? <Image source={require('../assets/salary.png')} style={{marginTop:14,marginLeft:17}}></Image> : null}
+              { item.category=="Hospital" ? <Image source={require('../assets/recurringbill.png')} style={{marginTop:14,marginLeft:17}}></Image> : null}
 
             </View>
             <View style={{marginTop:18,marginLeft:10}}>

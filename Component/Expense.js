@@ -38,10 +38,9 @@ const Expense = ({route, navigation }) => {
   };
 
   const handleDateConfirm = (date) => {
-    console.log(date,'===date');
     let t=date.toString()
-  
     const r = JSON.stringify(date).slice(1, 11);
+   
     sett(r);
     const x = JSON.stringify(date).slice(0, 11);
     const x1 = x.split("-");
@@ -60,10 +59,12 @@ const Expense = ({route, navigation }) => {
   };
 
   const handleTimeConfirm = (time) => {
-    const h = te + "T" + JSON.stringify(time).slice(12, 20);
+    console.log(JSON.stringify(time).slice(12,25));
+    const h = te + "T" + JSON.stringify(time).slice(12, 25);
+    let x=new Date(h)
     setobj({
       ...obj,
-      createdAt: h,
+      createdAt: x,
     });
     const t = JSON.stringify(time).slice(12, 17);
     settime(t);
@@ -72,7 +73,6 @@ const Expense = ({route, navigation }) => {
 
   async function Handlechange() {
     if(!obj.id){
-      console.log('hello');
       dispatch(addApiData(obj)).then((d) => {
         if (d.meta.requestStatus == "fulfilled") {
           return navigation.navigate("Home");

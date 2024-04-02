@@ -58,10 +58,12 @@ const Income = ({route, navigation }) => {
   };
 
   const handleTimeConfirm = (time) => {
-    const h = de + "T" + JSON.stringify(time).slice(12, 20);
+    const h = de + "T" + JSON.stringify(time).slice(12, 25);
+    let x=new Date(h)
+
     setobj({
       ...obj,
-      createdAt: h,
+      createdAt: x,
     });
     const t = JSON.stringify(time).slice(12, 17);
     settime(t);

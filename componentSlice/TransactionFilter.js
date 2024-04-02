@@ -49,43 +49,63 @@ const TransactionFilter = createSlice({
             state.allTransaction=data
         },
         incomeExpense:(state,action)=>{
-
-            const data=state.allTransaction.filter((a)=> a.type==action.payload)
-            state.allTransaction=data
+            console.log(action.payload,'====income and expense');
+            if(action.payload=="Income" || action.payload=="Expense"){
+                console.log('in income and expense');
+                const data=state.allTransaction.filter((a)=> a.type==action.payload)
+                state.allTransaction=data
+            }
+            
         },
         sortData:(state,action)=>{
+            console.log(action.payload,'=========sort');
+            if(action.payload!=0){
+                console.log('in sort');
             if(action.payload=="Highest"){
-                const dat=state.allTransaction.reduce((a,b)=>a.money>b.money ? a : b)
+                const dat=state.allTransaction.reduce((a,b)=>Number(a.money)>Number(b.money) ? a : b)
                 state.allTransaction=[dat]
             }
             if(action.payload=="Lowest"){
-                const dat=state.allTransaction.reduce((a,b)=>a.money<b.money ? a : b)
+                const dat=state.allTransaction.reduce((a,b)=>Number(a.money)<Number(b.money) ? a : b)
                 state.allTransaction=[dat]
             }
             if(action.payload=="Newest"){
+                console.log(state.allTransaction)
                 let date=[]
                  date=state.allTransaction.map((a)=>{
                     return new Date(a.createdAt)
                 })
                 const neww=new Date(Math.max(...date))
-                let text = neww.toString();
-                console.log(text);
-
+                const data=state.allTransaction.find((a)=>{
+                    if(JSON.stringify(a.createdAt)==JSON.stringify(neww))
+                    {
+                        return a
+                    }
+                })
+                state.allTransaction=[data]
             }
             if(action.payload=="Oldest"){
                 let date=[]
+                console.log(state.allTransaction);
                  date=state.allTransaction.map((a)=>{
                     return new Date(a.createdAt)
                 })
                 const neww=new Date(Math.min(...date))
-                neww.toString()
-                console.log(neww.slice(0,17));
-                const data=state.allTransaction((a)=>{
-            
+                const data=state.allTransaction.find((a)=>{
+                    if(JSON.stringify(a.createdAt)==JSON.stringify(neww))
+                    {
+                        return a
+                    }
                 })
-            }
+                console.log(data);
+                state.allTransaction=[data]
+            }}
         },
         sortByCate:(state,action)=>{
+            console.log(action.payload,'=====cate');
+
+            if(action.payload.v!=null){
+                console.log('in cate');
             const v=action.payload
             const data=state.allTransaction.filter((a)=>{
                 if(a.category==v.v)
@@ -94,6 +114,7 @@ const TransactionFilter = createSlice({
                 }
             })
             state.allTransaction=data
+        }
         }
     },
     extraReducers:(builder)=>{

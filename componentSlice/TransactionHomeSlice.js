@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import Transaction from '../APIs/Transaction'
 import axios from 'axios'
-
 const initialState={
     allTransaction : null,
     Transaction:null,
@@ -29,6 +28,7 @@ const TransactionHomeSlice = createSlice({
                 }
             })
         },
+       
         filterWithTime:(state,action)=>{
             const date=new Date();
             const year=JSON.stringify(date).slice(1,5)
