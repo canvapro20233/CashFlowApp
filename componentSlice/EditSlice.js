@@ -8,28 +8,27 @@ const initialState={
     dt: null
 }
 
-
 export const getApiData=createAsyncThunk("call ap",async()=>{
 
-    const response=await axios.get("http://192.168.0.103:3000/Transaction")
+    const response=await axios.get("http://192.168.2.109:3000/Transaction")
         return response.data
 })
 
 export const editApiData=createAsyncThunk("edit api",async(obj)=>{
 
-    const response=await axios.put(`http://192.168.0.103:3000/Transaction/${obj.id}`,obj)
+    const response=await axios.put(`http://192.168.2.109:3000/Transaction/${obj.id}`,obj)
         return response.data
 })
 
 export const deleteApiData=createAsyncThunk("delete api",async(id)=>{
 
-    const response=await axios.delete(`http://192.168.0.103:3000/Transaction/${id}`)
+    const response=await axios.delete(`http://192.168.2.109:3000/Transaction/${id}`)
         return response.data
 })
 
 export const addApiData=createAsyncThunk("add api",async(obj)=>{
 
-    const response=await axios.post("http://192.168.0.103:3000/Transaction",obj)
+    const response=await axios.post("http://192.168.2.109:3000/Transaction",obj)
         return response.data
 })
 
