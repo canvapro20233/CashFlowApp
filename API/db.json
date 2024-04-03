@@ -1,0 +1,14 @@
+{
+  "Budget": [
+    {
+      "id": "569d",
+      "money": "55",
+      "category": "Hospital"
+    },
+    {
+      "id": "10a7",
+      "money": "111",
+      "category": "Shopping"
+    }
+  ]
+}

@@ -1,58 +1,105 @@
-import {View,Text,Image,StyleSheet, TouchableOpacity,Animated} from 'react-native';
+import {View,Text,Image,StyleSheet, TouchableOpacity,Animated,Modal} from 'react-native';
 import icon from './assets/arrow left.png'
 import icon1 from './assets/trash.png'
-import icon2 from './assets/shopping-bag.png'
-import { useState ,useEffect} from 'react';
-import { TextInput } from 'react-native-gesture-handler';
+import React,{ useState ,useEffect} from 'react';
+
+import { useDispatch } from 'react-redux';
+
+import { deleteData } from './BudgetSlice';
+
+
+const transparent='rgba(0,0,0,0.5)';
+
+const DetailBudget=({route,navigation})=>{
+    const {data} = route.params;
+
+
+  const dispatch = useDispatch();
+
+    function Handlechange(){
+        dispatch(deleteData(data.id)).then((a)=>{
+            if(a.meta.requestStatus == "fulfilled"){
+                navigation.navigate("Budget")
+            }
+        })
+    }
 
 
 
-const DetailBudget=({navigation})=>{
 
 
-
+const[openModel,setOpenModel]=React.useState(false)
     const [progress, setProgress] = useState(new Animated.Value(0));
 
+    function renderModel(){
+        return(
+            <Modal visible={openModel} animationType='slide' transparent={true} >
+            <View
+            style={{
+                flex:1,
+                justifyContent:'center',
+                alignItems:'center',
+                backgroundColor:transparent,
+            }}>
+            <View style={{backgroundColor:'white',borderRadius:10,width:'100%',height:200,marginTop:690,padding:15}}>
+
+            <Text style={{color:'black',fontSize:18,textAlign:'center'}}>Remove this budget?</Text>
+            <Text style={{color:'#91919F',textAlign:'center'}}>Are you sure do you wanna remove this </Text>
+            <Text style={{textAlign:'center',color:'#91919F'}}>budget?</Text>
+            <Text style={{backgroundColor:'#EEE5FF',borderRadius:16,height:50,width:170,marginLeft:8,marginTop:30}}></Text>
+            <View>
+            <TouchableOpacity onPress={()=>setOpenModel(false)}>
+            <Text style={{color:'#7F3DFF',marginTop:-35,paddingLeft:80}}>No</Text>
+            </TouchableOpacity>
+            </View>
+            <Text style={{backgroundColor:'#7F3DFF',borderRadius:16,height:50,width:170,marginLeft:203,marginTop:-50}}></Text>
+            <View>
+            <TouchableOpacity onPress={Handlechange}>
+            <Text style={{color:'white',marginTop:-35,marginLeft:275}}>Yes</Text>
+            </TouchableOpacity>
+            </View>
+
+            </View>
+
+            </View>
+
+            </Modal>
+        )
+    }
+
     useEffect(() => {
-        
+
         Animated.timing(progress, {
             toValue: 100,
-            duration: 1500, 
-            useNativeDriver: false, 
+            duration: 1500,
+            useNativeDriver: false,
         }).start();
     }, []);
 
     return(
         <View>
             <Text style={styles.DetailBudget}>DetailBudget</Text>
-            <TouchableOpacity onPress={()=>navigation.navigate("Budget1")}>
+            <TouchableOpacity onPress={()=>navigation.navigate("Create_Budget")}>
             <Image
                 source={icon}
                 style={{marginLeft:16,marginTop:-17}}
             />
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={()=>navigation.navigate("Remove_Budget")}>
+            <TouchableOpacity onPress={()=>setOpenModel(true)}>
             <Image
                 source={icon1}
                 style={{marginTop:-28,marginLeft:355}}
             />
             </TouchableOpacity>
+            {renderModel()}
             <View>
                 <Text style={styles.shape}></Text>
-                <Text style={styles.shape1}></Text>
-                <Image
-                    source={icon2}
-                    style={{marginTop:-32,marginLeft:146}}
-                />
-                <Text style={styles.shopping}>Shopping</Text>
+
                 <View>
                     <Text style={styles.text}>Remaining</Text>
-                    <TextInput style={{marginTop:15,marginLeft:172,fontSize:55,color:'black'}}
-                        placeholder='$0'
-                    />
-                    
-                        {/* style={{marginTop:12,marginLeft:165}} */}
+
+                        <Text style={{marginTop:15,marginLeft:178,fontSize:35,color:'black',position:'absolute'}}> {data?.money} </Text>
 
                         <View>
             <View style={styles.progressContainer}>
@@ -77,7 +124,7 @@ const DetailBudget=({navigation})=>{
                         <Text style={styles.shape6}></Text>
                         <Text style={styles.text1}>You’ve exceed the limit</Text>
                     </View>
-                    <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate("")}>
+                    <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate("Create_Budget",{d : data})}>
           <Text style={styles.signuptext}>Edit</Text>
         </TouchableOpacity>
                 </View>
@@ -105,26 +152,12 @@ const styles=StyleSheet.create({
         borderColor:'#E3E5E5',
         borderWidth: 1,
     },
-    shape1:{
-        width:40,
-        height:39,
-        backgroundColor:'#FCEED4',
-        borderRadius:12,
-        marginTop:-50,
-        marginLeft:138,
-    },
-    shopping:{
-        marginLeft:187,
-        color:'#0D0E0F',
-        marginTop:-23,
-        fontSize:17,
-    },
     text:{
         textAlign:'center',
-        marginTop:50,
+        marginTop:80,
         fontSize:22,
     },
- 
+
     progressContainer: {
         height: 12,
         width: 350,
@@ -171,6 +204,7 @@ const styles=StyleSheet.create({
     marginTop:2,
     marginLeft:111,
    },
+
    text1:{
     marginLeft:140,
     marginTop:-19,
@@ -184,9 +218,10 @@ const styles=StyleSheet.create({
     height:56,
     alignItems:"center",
     justifyContent:"center",
-    marginTop:350,
+    marginTop:600,
     marginLeft: 20,
-    marginBottom:5
+    marginBottom:5,
+    position:'absolute'
   },
    signuptext:{
      color:"white",

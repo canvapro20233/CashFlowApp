@@ -4,6 +4,11 @@ import icon from './assets/arrow left.png'
 import icon1 from './assets/arrow-right-2.png'
 
 const Setting=({navigation})=>{
+
+    const notification=()=>{
+        navigation.navigate("Notification", { title: "Budget Updated", body: "In the budget, the money and category have been reduced..." });
+
+    }
     return(
         <View style={styles.container}>
 
@@ -35,30 +40,18 @@ const Setting=({navigation})=>{
             />
         </View>
 
-        <TouchableOpacity onPress={()=>navigation.navigate("Theme")}>
-        <Text style={styles.theme}>Theme</Text>
-        </TouchableOpacity>
-
-        <Text style={styles.dark}>Dark</Text>
-
-        
-        <View>
-            <Image
-                source={icon1}
-                style={{marginLeft:373,marginTop:-22}}
-            />
-        </View>
 
         <Text style={styles.security}>Security</Text>
         <Text style={styles.fingerprint}>Fingerprint</Text>
-         
+
+
         <View>
             <Image
                 source={icon1}
                 style={{marginLeft:373,marginTop:-22}}
             />
         </View>
-        <TouchableOpacity onPress={()=>navigation.navigate("SettingNotification")}>
+        <TouchableOpacity onPress={notification}>
         <Text style={styles.notification}>Notification</Text>
         </TouchableOpacity>
         <View>
@@ -109,12 +102,6 @@ const styles=StyleSheet.create({
         color:'#91919F',
         marginLeft:345,
         marginTop:-18,
-    },
-    theme:{
-        fontSize:16,
-        marginLeft:16,
-        marginTop:35,
-
     },
     dark:{
         fontSize:14,

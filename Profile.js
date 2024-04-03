@@ -1,5 +1,6 @@
 import React from "react";
-import { View,StyleSheet ,Text,Image, TextInput,TouchableOpacity} from "react-native";
+import { View,StyleSheet ,Text,Image, TextInput,TouchableOpacity,Animated,Modal} from "react-native";
+import { useState ,useEffect} from "react";
 import icon from './assets/Vector.png'
 import icon1 from './assets/wallet 3.png'
 import icon2 from './assets/settings.png'
@@ -12,8 +13,61 @@ import icon8 from './assets/close.png'
 import icon9 from './assets/edit.png'
 
 
+const transparent='rgba(0,0,0,0.5)';
+
+
+
 
 const Profile=({navigation})=>{
+
+    
+
+const[openModel,setOpenModel]=React.useState(false)
+const [progress, setProgress] = useState(new Animated.Value(0));
+
+function renderModel(){
+    return(
+        <Modal visible={openModel} animationType='slide' transparent={true} >
+        <View
+        style={{
+            flex:1,
+            justifyContent:'center',
+            alignItems:'center',
+            backgroundColor:transparent,
+        }}>
+        <View style={{backgroundColor:'white',borderRadius:10,width:'100%',height:200,marginTop:690,padding:15}}>
+
+        <Text style={{color:'black',fontSize:18,textAlign:'center'}}>Logout?</Text>
+        <Text style={{color:'#91919F',textAlign:'center'}}>Are you sure do you wanna logout? </Text>
+        <Text style={{backgroundColor:'#EEE5FF',borderRadius:16,height:50,width:170,marginLeft:8,marginTop:30}}></Text>
+        <View>
+        <TouchableOpacity onPress={()=>setOpenModel(false)}>
+        <Text style={{color:'#7F3DFF',marginTop:-35,paddingLeft:80}}>No</Text>
+        </TouchableOpacity>
+        </View>
+        <Text style={{backgroundColor:'#7F3DFF',borderRadius:16,height:50,width:170,marginLeft:203,marginTop:-50}}></Text>
+        <View>
+        <TouchableOpacity onPress={()=>navigation.navigate("Profile")}>
+        <Text style={{color:'white',marginTop:-35,marginLeft:275}}>Yes</Text>
+        </TouchableOpacity>
+        </View>
+
+        </View>
+
+        </View>
+
+        </Modal>
+    )
+}
+
+useEffect(() => {
+
+    Animated.timing(progress, {
+        toValue: 100,
+        duration: 1500,
+        useNativeDriver: false,
+    }).start();
+}, []);
     return(
         <View style={{backgroundColor:'#F4F4F4',height:900}}>
         <TouchableOpacity>
@@ -24,10 +78,7 @@ const Profile=({navigation})=>{
             <Text style={styles.border}></Text>
             </TouchableOpacity>
             <View>
-                <TextInput
-                    placeholder="Username"
-                    style={{color:'#91919F',fontSize:14,marginLeft:140,marginTop:-75}}
-                />
+                <Text style={{color:'#91919F',fontSize:14,marginLeft:140,marginTop:-75}}>Username</Text>
 
             </View>
             <TextInput style={{fontSize:25,color:'#161719',marginLeft:140,marginTop:-50}}
@@ -55,8 +106,9 @@ const Profile=({navigation})=>{
 
                 <Text style={styles.box3}></Text>
 
-                <TouchableOpacity onPress={()=>navigation.navigate("Logout")}>
+                <TouchableOpacity onPress={()=>setOpenModel(true)}>
                 <Text style={styles.text2}>Logout</Text>
+                {renderModel()}
                 </TouchableOpacity>
 
 
