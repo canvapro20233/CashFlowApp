@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { addUserAPI } from "../APIs/Transaction";
+import { addUserAPI ,TransactionEdit,TransactionDelete} from "../APIs/Transaction";
 const initialState={
     loading :false,
     data : null,
@@ -10,25 +10,25 @@ const initialState={
 
 export const getApiData=createAsyncThunk("call ap",async()=>{
 
-    const response=await axios.get("http://192.168.2.109:3000/Transaction")
+    const response=await axios.get("http://192.168.0.103:3000/Transaction")
         return response.data
 })
 
 export const editApiData=createAsyncThunk("edit api",async(obj)=>{
 
-    const response=await axios.put(`http://192.168.2.109:3000/Transaction/${obj.id}`,obj)
+    const response=await TransactionEdit(obj)
         return response.data
 })
 
 export const deleteApiData=createAsyncThunk("delete api",async(id)=>{
 
-    const response=await axios.delete(`http://192.168.2.109:3000/Transaction/${id}`)
+    const response=await TransactionDelete(id)
         return response.data
 })
 
 export const addApiData=createAsyncThunk("add api",async(obj)=>{
 
-    const response=await axios.post("http://192.168.2.109:3000/Transaction",obj)
+    const response=await axios.post("http://192.168.0.103:3000/Transaction",obj)
         return response.data
 })
 
