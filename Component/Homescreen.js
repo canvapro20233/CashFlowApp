@@ -63,10 +63,12 @@ const balance=useSelector((state)=>state.NewAccountSlice.obj)
             </View>
 
             {/* notifiaction */}
+            <TouchableOpacity onPress={()=> navigation.navigate("Notification")}>
             <Image
               source={require("../assets/notifiaction.png")}
               style={{ marginLeft: 90, marginTop: 50 }}
             ></Image>
+            </TouchableOpacity>
           </View>
           {/* accountbalance */}
           <View style={styles.accountbalance}>

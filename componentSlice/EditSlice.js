@@ -7,6 +7,11 @@ const initialState={
     data : null,
     dt: null
 }
+export const editData = createAsyncThunk("ap", async (dt) => {
+   
+    const response = await EditAPI(dt);
+    return response.data
+});
 
 export const getApiData=createAsyncThunk("call ap",async()=>{
 

@@ -13,6 +13,9 @@ import IncomeTransaction from "../Component/IncomeTransaction";
 import { View,Image, TouchableOpacity, Modal } from "react-native";
 import { useState } from "react";
 import AddNewAccount from "../Component/AddNewAccount";
+import Profile from "../Component/Profile";
+import Budget from "../Component/Budget";
+
 
 const Tabs=()=>{
     const tab = createBottomTabNavigator()
@@ -67,7 +70,7 @@ const Tabs=()=>{
                         <Image tintColor={focused ? "#7F3DFF" : "#C6C6C6"} style={{alignItems:'center',justifyContent:'center',marginTop:10}} source={require("../assets/pie-chart.png")}></Image>
                         )
                     }
-                }} name="ExpenseTransaction" component={ExpenseTransaction}></tab.Screen>
+                }} name="Budget" component={Budget}></tab.Screen>
                 
 
 
@@ -77,7 +80,7 @@ const Tabs=()=>{
                         <Image tintColor={focused ? "#7F3DFF" : "#C6C6C6"} style={{alignItems:'center',justifyContent:'center',marginTop:10}} source={require("../assets/user.png")}></Image>
                         )
                     }
-                }} name="IncomeTransaction" component={IncomeTransaction}></tab.Screen>
+                }} name="Profile" component={Profile}></tab.Screen>
 
             </tab.Navigator>
             

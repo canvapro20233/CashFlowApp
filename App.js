@@ -1,3 +1,4 @@
 import screens from "./Navigation/Screens"
 import Ragestration from "./Navigation/registration"
-export default Ragestration
+import chart from "./chart"
+export default chart

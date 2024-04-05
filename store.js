@@ -6,6 +6,9 @@ import EditeSliceReducer from "./componentSlice/EditSlice"
 import loginReducer from './componentSlice/loginslice';
 import forgetsliceReducer from "./componentSlice/forgetslice";
 import newAccountReducer from "./componentSlice/newAccountSlice";
+import sliceReducer from "./componentSlice/slice";
+import BudgetSlice from "./componentSlice/BudgetSlice";
+import editSlice2 from "./componentSlice/editSlice2";
 const store=configureStore({
     reducer:{
         BillSplitter : BillReducer,
@@ -14,7 +17,11 @@ const store=configureStore({
         EditSlice : EditeSliceReducer,
         login: loginReducer,
         forget : forgetsliceReducer,
-        NewAccountSlice : newAccountReducer
+        NewAccountSlice : newAccountReducer,
+        Slice : sliceReducer,
+        BudgetSlice : BudgetSlice,
+        EditSli : editSlice2
+
     }
 })
 export default store

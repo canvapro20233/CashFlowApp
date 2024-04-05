@@ -15,6 +15,14 @@ import Tabs from "./stacks"
 import IncomeTransaction from "../Component/IncomeTransaction";
 import Income from "../Component/Income";
 import AddNewAccount from "../Component/AddNewAccount"
+import Profile from "../Component/Profile";
+import Account from "../Component/Account";
+import Budget from "../Component/Budget";
+import Create_Budget from "../Component/Create_Budget";
+import DetailBudget from "../Component/DetailBudget";
+import Notification from "../Component/Notification";
+import Setting from "../Component/Setting";
+import SettingNotification from "../Component/SettingNotification";
 
 const Screens=()=>{
     const stack = createStackNavigator()
@@ -27,8 +35,12 @@ const Screens=()=>{
         <Provider store={store}>
             <stack.Navigator screenOptions={screenOptions}>
                 <stack.Screen name="tabs" component={Tabs}></stack.Screen>
+                <stack.Screen name="SettingNotification" component={SettingNotification}></stack.Screen>
+                <stack.Screen name="Setting" component={Setting}></stack.Screen>
+                <stack.Screen name="Notification" component={Notification}></stack.Screen>
                 <stack.Screen name="Income" component={Income} initialParams={{ id: 100 }}></stack.Screen>
                 <stack.Screen name="BillSplitter" component={BillSplitter}></stack.Screen>
+                <stack.Screen name="DetailBudget" component={DetailBudget}></stack.Screen>
                 <stack.Screen name="HomeScreen" component={HomeScreen}></stack.Screen>
                 <stack.Screen name="IncomeTransaction" component={IncomeTransaction}></stack.Screen>
                 <stack.Screen name="Transaction" component={Transaction}></stack.Screen>
@@ -36,6 +48,11 @@ const Screens=()=>{
                 <stack.Screen name="ExpenseTransaction" component={ExpenseTransaction}></stack.Screen>
                 <stack.Screen name="Expense" component={Expense} initialParams={{ id: 100 }}
 ></stack.Screen>
+<stack.Screen name="AddNewAccount" component={AddNewAccount}></stack.Screen>
+<stack.Screen name="Profile" component={Profile}></stack.Screen>
+<stack.Screen name="Account" component={Account}></stack.Screen>
+<stack.Screen name="Create_Budget" component={Create_Budget} initialParams={{ d : 100}}></stack.Screen>
+<stack.Screen name="Budge" component={Budget}></stack.Screen>
             </stack.Navigator>
             </Provider>
     )
