@@ -9,6 +9,5 @@ export function loginAPI() {
 }
 
 export function resetpass(data) {
-    
     return axios.put(`http://192.168.93.38:3000/users/${data.id}`,data);
 }

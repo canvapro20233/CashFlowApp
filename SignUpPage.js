@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity, Alert} from
 import { useFormik } from "formik";
 import { REGISTRATION_SCHEMA } from "./formikValidation";
 import CheckBox from 'react-native-check-box';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import icon from "./assets/arrow.png"
 import googletImg from "./assets/google.png"
 import showImg from "./assets/show.png"

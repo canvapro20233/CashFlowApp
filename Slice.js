@@ -13,14 +13,6 @@ export const useradd = createAsyncThunk("counter/useradd",async(data)=> {
         console.log("error error");
     }
 })
-// export const userapi = createAsyncThunk("counter/userapi",async()=> {
-//     try{
-//         const response = await UserAPI()
-//         console.log(response.data);
-//     }catch(error){
-//         console.log("error error");
-//     }
-// })
 
 const Slice = createSlice({
     name: 'counter',
