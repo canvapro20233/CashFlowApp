@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ScrollView } from 'react-native-gesture-handler';
 
 const Budget = ({ route, navigation }) => {
-  
+
   const money = route.params?.money;
+
   const dispatch = useDispatch();
 
 
@@ -23,7 +24,7 @@ const Budget = ({ route, navigation }) => {
 
   return (
     <View style={styles.container}>
-     
+
       <Image source={icon1} style={{ marginLeft: 18, marginTop: 80 }} />
       <View>
         <Image source={icon2} style={{ marginLeft: 382, marginTop: -15 }} />
@@ -56,13 +57,13 @@ const Budget = ({ route, navigation }) => {
 
       </View>
 
-    
+
 
 
         <TouchableOpacity style={styles.signup} onPress={() => navigation.navigate("Create_Budget")}>
           <Text style={styles.signuptext}>Create Budget</Text>
         </TouchableOpacity>
-    
+
       </View>
 
     </View>
