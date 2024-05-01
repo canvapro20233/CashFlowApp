@@ -23,7 +23,7 @@ const Ragestration=()=>{
     return(
         <Provider store={store}>
             <NavigationContainer>
-            <stack.Navigator screenOptions={screenOptions} initialRouteName="screen">
+            <stack.Navigator screenOptions={screenOptions} initialRouteName="SplashScreen">
                 <stack.Screen name="screen" component={Screens}></stack.Screen>
                 <stack.Screen name="AddNewAccount" component={AddNewAccount}></stack.Screen>
                 <stack.Screen name="SplashScreen" component={SplashScreen}></stack.Screen>
@@ -39,7 +39,6 @@ const Ragestration=()=>{
             </NavigationContainer>
             </Provider>
     )
-
 }
 
 export default Ragestration

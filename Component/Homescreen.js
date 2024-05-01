@@ -13,28 +13,30 @@ import { getAPIData } from "../componentSlice/TransactionHomeSlice";
 import { filterWithTime,transaction } from "../componentSlice/TransactionHomeSlice";
 
 import { getApiData } from "../componentSlice/TransactionHomeSlice";
-
 import {DeleteApiData,AddApiData,EditApiData} from "../componentSlice/EditSlice"
+import * as SecureStore from 'expo-secure-store';
 
-
-const HomeScreen = ({ navigation }) => {
+const HomeScreen =({ navigation }) => {
   const dispatch = useDispatch();
-const balance=useSelector((state)=>state.NewAccountSlice.obj)
-  // useEffect(()=>{
-  //   dispatch(filterWithTime(ison))
-  // },[ison])
 
+const balance=useSelector((state)=>state.NewAccountSlice.obj)
   const data = useSelector((state) => state.Transaction.allTransaction);  
   const income = useSelector((state) => state.Transaction.income);
   const expense = useSelector((state) => state.Transaction.expense);
 
-  useEffect(() => {
+
+  useEffect(async () => {
+    
     dispatch(getAPIData()).then((a)=>{
       if(a.meta.requestStatus == "fulfilled"){
         dispatch(transaction())
       }
     })
-  }, []);
+    const obj=await SecureStore.getItemAsync("token")
+    if(obj){
+      navigation.navigate("Home")
+    }
+  },[]);
   const [ison, setison] = useState("Today");
 
   return (
@@ -114,8 +116,8 @@ const balance=useSelector((state)=>state.NewAccountSlice.obj)
             Spend Frequency
           </Text>
           <Image
-            source={require("../assets/Vector 2.png")}
-            style={{ height: 160, width: 400 }}
+            source={require("../assets/Vector-2.png")}
+            style={{ height: 160, width: 420 }}
           ></Image>
         </View>
 
@@ -263,6 +265,12 @@ const balance=useSelector((state)=>state.NewAccountSlice.obj)
                   {item.category == "Investment" ? (
                     <Image
                       source={require("../assets/salary.png")}
+                      style={{ marginTop: 14, marginLeft: 17 }}
+                    ></Image>
+                  ) : null}
+                  {item.category == "Hospital" ? (
+                    <Image
+                      source={require("../assets/recurringbill.png")}
                       style={{ marginTop: 14, marginLeft: 17 }}
                     ></Image>
                   ) : null}

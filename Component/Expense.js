@@ -14,6 +14,7 @@ import { TextInput } from "react-native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { useDispatch } from "react-redux";
 import {editApiData,addApiData} from "../componentSlice/EditSlice"
+import { updateBudget ,getid} from "../componentSlice/BudgetSlice";
 
 const Expense = ({route, navigation }) => {
   const dispatch = useDispatch();
@@ -59,7 +60,6 @@ const Expense = ({route, navigation }) => {
   };
 
   const handleTimeConfirm = (time) => {
-    console.log(JSON.stringify(time).slice(12,25));
     const h = te + "T" + JSON.stringify(time).slice(12, 25);
     let x=new Date(h)
     setobj({
@@ -73,6 +73,7 @@ const Expense = ({route, navigation }) => {
 
   async function Handlechange() {
     if(!obj.id){
+      dispatch(getid(obj))
       dispatch(addApiData(obj)).then((d) => {
         if (d.meta.requestStatus == "fulfilled") {
           return navigation.navigate("Home");

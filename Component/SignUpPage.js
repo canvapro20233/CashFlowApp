@@ -24,7 +24,6 @@ const SignUpPage = ({ navigation }) => {
     validationSchema: REGISTRATION_SCHEMA,      
     onSubmit: async(values) => {
         dispatch(useradd(values)).then(data => {
-          
         })
       navigation.navigate('VarificationPage')
   }

@@ -8,7 +8,7 @@ import {
   Modal,
 } from "react-native";
 import { useEffect, useState } from "react";
-import { TextInput } from "react-native";
+import { TextInput }  from "react-native";
 import * as Animatable from "react-native-animatable";
 import { useNavigation } from "@react-navigation/native";
 import {findData} from "../componentSlice/EditSlice"
@@ -29,7 +29,6 @@ const ExpenseTransaction = ({route,navigation}) => {
 
   useEffect(()=>{
     dispatch(getApiData()).then((a)=>{
-
       if(a.meta.requestStatus=="fulfilled"){
         dispatch(findData(id))
       }

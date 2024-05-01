@@ -79,7 +79,7 @@ const[openModel,setOpenModel]=React.useState(false)
     return(
         <View>
             <Text style={styles.DetailBudget}>DetailBudget</Text>
-            <TouchableOpacity onPress={()=>navigation.navigate("Create_Budget")}>
+            <TouchableOpacity onPress={()=>navigation.navigate("Budget")}>
             <Image
                 source={icon}
                 style={{marginLeft:16,marginTop:-17}}

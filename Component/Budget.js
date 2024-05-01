@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import icon1 from '../assets/Vector.png';
 import icon2 from '../assets/arrow right 2.png';
@@ -11,11 +11,14 @@ const Budget = ({ route, navigation }) => {
   const money = route.params?.money;
 
   const dispatch = useDispatch();
-
+const [mon,setmon]=useState()
   const data=useSelector((state)=> state.Slice.value)
 
   useEffect(() => {
     dispatch(APIData());
+    const a=new Date()
+    const b=a.toString()
+    setmon(b.split(" ")[1])
   }, []);
 
 
@@ -27,7 +30,7 @@ const Budget = ({ route, navigation }) => {
         <Image source={icon2} style={{ marginLeft: 382, marginTop: -15 }} />
       </View>
 
-      <Text style={styles.text}>May</Text>
+      <Text style={styles.text}>{mon}</Text>
 
       <View style={styles.card}>
       <View>
@@ -46,8 +49,9 @@ const Budget = ({ route, navigation }) => {
               {item.category=="Food" ? <View style={{borderWidth:0,height:15, width:15,borderRadius:50,marginRight:4,backgroundColor:"#FD3C4A"}}></View> : null}
               <Text>{item.category}</Text>
             </View>
-            <Text style={{fontSize:25,marginLeft:20,marginTop:10}}>Remaining $0</Text>
+            <Text style={{fontSize:25,marginLeft:20,marginTop:10}}>Remaining ${item.remaining} </Text>
             <Text style={{color:"#91919F",marginLeft:20,marginTop:10,fontSize:17}}>${item.money}</Text>
+            {item.remaining===0 ? <Text style={{color:'red',marginLeft:200,marginTop:-52,fontSize:16}}>Exit the limit!</Text> : null}
           </View>
           </TouchableOpacity>
         </ScrollView>

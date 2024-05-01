@@ -8,8 +8,7 @@ import { getAPIData } from "../componentSlice/BudgetSlice"
 import * as Notifications from "expo-notifications";
 
 import { Notification } from 'expo-notifications';
-import { editData } from '../componentSlice/editSlice2';
-
+import { editDataBudget } from '../componentSlice/EditSlice';
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -34,7 +33,6 @@ const Create_Budget = ({route,navigation }) => {
   
   const dispatch = useDispatch();
   const {d}=route.params;
-console.log(d,'from creete bufjj');
 
   
   const [value, setValue] = useState(true);
@@ -42,13 +40,19 @@ console.log(d,'from creete bufjj');
   if(d==100){
     var [dt,setdt]=useState({
       "money" : "",
-      "category" : ""
+      "category" : "",
+      "createdAt" : new Date(),
+      "remaining" : "",
+      "id" : ""
     })
+
   }else{
     var [dt,setdt]=useState({
       "id" : d.id,
       "money" : d.money,
-      "category" : d.category
+      "category" : d.category,
+      "createdAt" : d.createdAt,
+      "remaining" : d.remaining
     })
   }
   
@@ -75,11 +79,11 @@ console.log(d,'from creete bufjj');
           generateNotification()
           return navigation.navigate("Budget", {money : value ,category:value});
         }
-      });}else{
-        dispatch(editData(dt)).then((a)=>{
-          console.log(a.meta.requestStatus);
-          if(a.meta.requestStatus == "fulfilled"){
-            navigation.navigate("Budget")
+      });
+    }else{
+        dispatch(editDataBudget(dt)).then((a)=>{
+          if(a.meta.requestStatus === "fulfilled"){
+            navigation.navigate("Budget")                                                  
           }
         })
       }
@@ -115,22 +119,22 @@ console.log(d,'from creete bufjj');
           value={dt.money} 
           onChangeText={(e)=> setdt({
             ...dt,
-            "money" : e
+            "money" : e,
+            "remaining" : e
           })}
         />
       </View>
       <View style={styles.card}>
         <SelectList
           style={styles.input}
-          setSelected={(val) => setdt({
+          setSelected={(a) => setdt({
             ...dt,
-            "category" : val
+            "category" : data[a-1].value,
+            "id" : a
           })}
           placeholder='Category'
           data={data}
-          save="value"
         />
- 
         <View style={{ marginLeft: 330, marginTop: -40 }}>
                   <TouchableOpacity  style={styles.signup} onPress={continueToBudget}>
             <Text style={styles.signuptext}>Continue</Text>

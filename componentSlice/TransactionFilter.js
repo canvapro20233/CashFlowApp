@@ -49,18 +49,14 @@ const TransactionFilter = createSlice({
             state.allTransaction=data
         },
         incomeExpense:(state,action)=>{
-            console.log(action.payload,'====income and expense');
             if(action.payload=="Income" || action.payload=="Expense"){
-                console.log('in income and expense');
                 const data=state.allTransaction.filter((a)=> a.type==action.payload)
                 state.allTransaction=data
             }
             
         },
         sortData:(state,action)=>{
-            console.log(action.payload,'=========sort');
             if(action.payload!=0){
-                console.log('in sort');
             if(action.payload=="Highest"){
                 const dat=state.allTransaction.reduce((a,b)=>Number(a.money)>Number(b.money) ? a : b)
                 state.allTransaction=[dat]
@@ -70,7 +66,6 @@ const TransactionFilter = createSlice({
                 state.allTransaction=[dat]
             }
             if(action.payload=="Newest"){
-                console.log(state.allTransaction)
                 let date=[]
                  date=state.allTransaction.map((a)=>{
                     return new Date(a.createdAt)
@@ -86,7 +81,6 @@ const TransactionFilter = createSlice({
             }
             if(action.payload=="Oldest"){
                 let date=[]
-                console.log(state.allTransaction);
                  date=state.allTransaction.map((a)=>{
                     return new Date(a.createdAt)
                 })
@@ -97,15 +91,12 @@ const TransactionFilter = createSlice({
                         return a
                     }
                 })
-                console.log(data);
                 state.allTransaction=[data]
             }}
         },
         sortByCate:(state,action)=>{
-            console.log(action.payload,'=====cate');
 
             if(action.payload.v!=null){
-                console.log('in cate');
             const v=action.payload
             const data=state.allTransaction.filter((a)=>{
                 if(a.category==v.v)

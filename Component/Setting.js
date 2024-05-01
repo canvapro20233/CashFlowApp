@@ -76,7 +76,8 @@ export default Setting;
 
 const styles=StyleSheet.create({
     container:{
-        backgroundColor:'#fff',
+        backgroundColor:'#ffffff',
+        height:1300
     },
     
     setting:{

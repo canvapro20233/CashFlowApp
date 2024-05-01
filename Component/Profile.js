@@ -5,12 +5,7 @@ import icon from '../assets/Vectorcopy.png'
 import icon1 from '../assets/wallet3.png'
 import icon2 from '../assets/settings.png'
 import icon3 from '../assets/logout.png'
-import icon4 from '../assets/home copy.png'
-import icon5 from '../assets/tran.png'
-import icon6 from '../assets/user copy.png'
-import icon7 from '../assets/pie-chart.png'
-import icon8 from '../assets/close.png'
-import icon9 from '../assets/edit.png'
+
 
 
 const transparent='rgba(0,0,0,0.5)';
@@ -72,11 +67,11 @@ useEffect(() => {
     }).start();
 }, []);
     return(
-        <View style={{backgroundColor:'#F4F4F4',height:900}}>
+        <View style={{backgroundColor:'#ffffff',height:900}}>
         <TouchableOpacity>
             <Image
                 source= {{uri:'https://www.hdwallpapers.in/download/blonde_beautiful_girl_model_women_red_dress_blur_background_4k_hd_girls-HD.jpg'}}
-                style={{width: 80, height: 80,borderRadius:50,marginTop:100,marginLeft:35}}
+                style={{width: 80, height: 80,borderRadius:100,marginTop:100,marginLeft:35}}
             />
             <Text style={styles.border}></Text>
             </TouchableOpacity>
@@ -117,7 +112,7 @@ useEffect(() => {
 
                 <Image
                     source={icon1}
-                    style={{marginLeft:49,marginTop:-242}}
+                    style={{marginLeft:49,marginTop:-260}}
                 />
 
                   <Image
@@ -127,54 +122,8 @@ useEffect(() => {
 
                 <Image
                     source={icon3}
-                    style={{marginLeft:49,marginTop:72}}
+                    style={{marginLeft:49,marginTop:90}}
                 />
-
-                <View>
-                
-                    <Text style={styles.box4}></Text>
-                    <Image
-                    source={icon4}
-                    style={{marginLeft:35,marginTop:-70}}
-                />
-                <Text style={{marginLeft:33,fontSize:10,color:'#C6C6C6',marginTop:5}}>Home</Text>
-                <Image
-              source={icon5}
-              style={{marginTop:-50,marginLeft:102}}
-            />
-            <Text style={{marginLeft:90,fontSize:10,color:'#C6C6C6',marginTop:3}}>Transaction</Text>
-            <Image
-              source={icon6}
-              style={{marginLeft:351,marginTop:-42}}
-            />
-            <Text style={{marginLeft:346,fontSize:10,color:'#7F3DFF',marginTop:3}}>Profile</Text>
-            <TouchableOpacity onPress={()=>navigation.navigate("Budget")}>
-            <Image
-              source={icon7}
-              style={{marginLeft:278,marginTop:-42}}
-            />
-            </TouchableOpacity>
-            <Text style={{marginLeft:275,fontSize:10,color:'#C6C6C6',marginTop:-13}}>Budget</Text>
-                    
-
-                </View>
-                <View>
-            <TouchableOpacity>
-              <Text style={{height:60,width:60 ,borderRadius:50,backgroundColor:'#7F3DFF',marginTop:-32,marginLeft:175}}></Text>
-              </TouchableOpacity>
-            
-              <Image
-                source={icon8}
-                // style={{marginTop:-50,marginLeft:100}}
-                style={{marginTop:-48,marginLeft:191}}
-              />
-              
-            </View>
-            <Image 
-                source={icon9}
-                // style={{marginTop:-50,marginLeft:100}}
-                style={{marginTop:-765,marginLeft:355}}
-              />    
             </View>
         </View>
     )
@@ -192,6 +141,7 @@ const styles=StyleSheet.create({
         marginLeft:30,
     },
     box:{
+        borderWidth:0,
         height:290,
         width:370,
         backgroundColor:'#FFFFFF',
@@ -202,7 +152,7 @@ const styles=StyleSheet.create({
         marginTop:85,
     },
     box1:{
-        borderWidth:1,borderRadius:17,marginLeft:35,marginTop:-260,height:52,width:52,backgroundColor:'#E0D3F9'
+        borderWidth:0,borderRadius:17,marginLeft:35,marginTop:-260,height:52,width:52,backgroundColor:"#E0D3F9"
     },
     text:{
             color:'#292B2D',
@@ -213,9 +163,10 @@ const styles=StyleSheet.create({
         height:52,width:52,backgroundColor:'#E0D3F9',borderRadius:17,marginLeft:35,marginTop:50,
     },
     text1:{
+        borderWidth:0,
         color:'#292B2D',
         marginLeft:98,
-        marginTop:-35,
+        marginTop:0,
     },
     box3:{
         height:52,width:52,backgroundColor:'#E0D3F9',borderRadius:17,marginLeft:35,marginTop:50,

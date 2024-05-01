@@ -24,7 +24,6 @@ const ResetPass = ({ route,navigation }) => {
       })
     
     dispatch(newpassword(data)).then((a)=>{
-      console.log(a.meta.requestStatus,'========res');
       if(a.meta.requestStatus == "fulfilled"){
         navigation.navigate('LoginPage')
       }

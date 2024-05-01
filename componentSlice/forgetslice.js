@@ -13,7 +13,6 @@ export const forgetuser = createAsyncThunk("forget/forgetuser", async () => {
 
 export const newpassword = createAsyncThunk("newpass",async(data) => {
   const respons = await resetpass(data)
-  console.log(respons,'==newpassword');
   return respons
 } )
 
@@ -35,16 +34,13 @@ const forgetslice = createSlice({
     builder
       .addCase(forgetuser.pending, (state) => {
         state.loading = true;
-        console.log('pendig');
       })
       .addCase(forgetuser.fulfilled, (state, action) => {
-        console.log('fullfiled');
         state.loading = false;
         state.userdata = action.payload
       })
       .addCase(forgetuser.rejected, (state) => {
         state.loading = false;
-        console.log('rejected');
         state.userdata = null
       });
   },

@@ -3,10 +3,12 @@ import { Text, View, StyleSheet, Image, TextInput, TouchableOpacity} from 'react
 import { newAccount } from '../componentSlice/newAccountSlice';
 import { FindData } from '../componentSlice/newAccountSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import * as SecureStore from 'expo-secure-store';
 
 const AddNewAccount = ({navigation}) => {
   const dispatch=useDispatch()
   const data=useSelector((state)=>state.NewAccountSlice.obj)
+ SecureStore.setItemAsync("balance",[data])
   const [obj,setobj]=useState({
       "Bankname" : "",
       "Phonenumber" : '',

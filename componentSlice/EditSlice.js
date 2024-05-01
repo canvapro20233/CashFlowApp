@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { addUserAPI ,TransactionEdit,TransactionDelete} from "../APIs/Transaction";
+import {TransactionAdd, addUserAPI ,TransactionEdit,TransactionDelete,Transaction,UpdateBudget} from "../APIs/Transaction";
 const initialState={
     loading :false,
     data : null,
@@ -15,7 +15,7 @@ export const editData = createAsyncThunk("ap", async (dt) => {
 
 export const getApiData=createAsyncThunk("call ap",async()=>{
 
-    const response=await axios.get("http://192.168.0.103:3000/Transaction")
+    const response=await Transaction()
         return response.data
 })
 
@@ -33,18 +33,21 @@ export const deleteApiData=createAsyncThunk("delete api",async(id)=>{
 
 export const addApiData=createAsyncThunk("add api",async(obj)=>{
 
-    const response=await axios.post("http://192.168.0.103:3000/Transaction",obj)
+    const response=await TransactionAdd(obj)
         return response.data
 })
 
 export const useradd = createAsyncThunk("counter/useradd",async(data)=> {
     try{
         const response = await addUserAPI(data)
-        console.log(response.data);
     }catch(error){
         console.log("error error");
     }
 })
+
+export const editDataBudget = createAsyncThunk("update in budget", (dt) => {
+    return UpdateBudget(dt)
+});
 
 const EditSlice=createSlice({
     name:"EditSlice",

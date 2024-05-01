@@ -7,7 +7,7 @@ const initialState = {
 }
 
 export const APIData = createAsyncThunk("ap", async () => {
-        const response = await axios.get("http://192.168.0.103:3000/Budget");
+        const response = await axios.get("http://172.20.10.6:3000/Budget");
         return response.data;
 });
 

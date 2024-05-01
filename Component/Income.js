@@ -115,7 +115,6 @@ const Income = ({route, navigation }) => {
       createdAt: id.createdAt,
       wallet: id.wallet,
     });
-    console.log(obj,'========obj');
   }
   return (
     <ScrollView>

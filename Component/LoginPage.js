@@ -6,6 +6,7 @@ import { loginUser,userFind,clearError } from '../componentSlice/loginslice';
 import showImg from "../assets/show.png"
 import hideImg from "../assets/hide.png"
 import icon from "../assets/arrow-left.png"
+import * as SecureStore from 'expo-secure-store';
 
 const LoginPage = ({ navigation }) => {
   const [login, setLogin] = useState([]); 
@@ -25,8 +26,10 @@ const LoginPage = ({ navigation }) => {
     onSubmit: () => {
       dispatch(loginUser()).then((e)=>{
         if(e.meta.requestStatus == "fulfilled"){
-          dispatch(userFind({email : formik.values.email,password : formik.values.password}))
+          dispatch(userFind({email : formik.values.email,password : formik.values.password})) 
+        
   if(dt){
+   SecureStore.setItem('token',dt.id);
     navigation.navigate("Success")
   }
         }
